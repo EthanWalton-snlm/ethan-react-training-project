@@ -1,0 +1,15 @@
+.card {
+  max-width: 25em;
+  border-radius: 12px;
+}
+
+.inner-card {
+  display: flex;
+  flex-direction: column;
+
+  img {
+    border-radius: 12px;
+    aspect-ratio: 16/9;
+    object-fit: contain;
+  }
+}

@@ -1,0 +1,18 @@
+.header {
+  height: 3em;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  align-content: center;
+  max-width: 50%;
+  width: 25%;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5em;
+  margin-right: 2.5em;
+}
