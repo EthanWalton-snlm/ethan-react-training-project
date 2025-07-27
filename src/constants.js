@@ -1,6 +1,8 @@
 const INITIAL_VEHICLES_DATA = [
   {
     vehicle: {
+      imageLink:
+        "https://file.kelleybluebookimages.com/kbb/base/evox/CP/13488/2021-Toyota-Corolla-front_13488_032_1809x771_1F7_cropped.png",
       vehicleId: "VEH-1",
       make: "Toyota",
       model: "Corolla",

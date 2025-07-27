@@ -1,8 +1,8 @@
 import Button from "@mui/joy/Button";
-import { Vehicle } from "../../components/Vehicle/Vehicle";
+import { Vehicles } from "../../pages/Vehicles/Vehicles";
 
-function Dashboard() {
-  return <Vehicle />;
+function Dashboard({ vehicleData }) {
+  return <Vehicles vehicleData={vehicleData} />;
 }
 
 export { Dashboard };

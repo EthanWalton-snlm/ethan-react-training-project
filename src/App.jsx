@@ -8,12 +8,11 @@ import { Vehicles } from "./pages/Vehicles/Vehicles";
 import { INITIAL_VEHICLES_DATA } from "./constants";
 
 function App() {
-  const INITIAL_VEHICLES_DATA = [{}]; // todo: get from other source
   const [vehicleData, setVehicleData] = useState(INITIAL_VEHICLES_DATA);
 
   return (
     <>
-      <div class="app">
+      <div className="app">
         <Header
           dashboard={<Link to="/dashboard">Dashboard</Link>}
           vehicles={<Link to="/vehicles/new">New Vehicle</Link>}
@@ -23,7 +22,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/dashboard"
+          element={<Dashboard vehicleData={vehicleData} />}
+        />
         <Route path="/vehicles/new" element={<></>} />
         <Route
           path="/vehicles/:id/edit"
