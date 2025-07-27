@@ -34,7 +34,7 @@ function Vehicle({ vehicle }) {
           </div>
           <div className="vehicle-info-container">
             <div className="vehicle-specs">
-              <h3 className="vehicle-title">{`${car.make} ${car.model} ${car.engineSize}`}</h3>
+              <h3 className="vehicle-title">{`${car.year} ${car.make} ${car.model}`}</h3>
               <h4 className="vehicle-subheading">{`${car.registrationNumber}`}</h4>
             </div>
             <div className="plan-price">
@@ -45,7 +45,7 @@ function Vehicle({ vehicle }) {
           <Button
             variant="soft"
             startDecorator={<ModeEditIcon />}
-            onClick={() => editVehicleRedirect(car.vehicleId)}
+            onClick={() => editVehicleRedirect(car.registrationNumber)}
           >
             Edit
           </Button>

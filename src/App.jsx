@@ -32,7 +32,10 @@ function App() {
           element={<Dashboard vehicleData={vehicleData} />}
         />
         <Route path="/vehicles/new" element={<NewVehicle />} />
-        <Route path="/vehicles/:id/edit" element={<EditVehicle />} />
+        <Route
+          path="/vehicles/:id/edit"
+          element={<EditVehicle vehicleData={vehicleData} />}
+        />
         <Route path="/quotes/:vehicleId" element={<VehicleQuotes />} />
         <Route path="/confirm" element={<ConfirmationPage />} />
         <Route path="/notfound" element={<PageNotFound />} />

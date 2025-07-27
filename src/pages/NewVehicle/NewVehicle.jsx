@@ -1,5 +1,134 @@
-function NewVehicle() {
-  return <h1>New Vehicle</h1>;
+import { VehicleInput } from "../../components/VehicleInput/VehicleInput";
+import Button from "@mui/joy/Button";
+import { newVehicleTemplate } from "../../constants";
+
+function NewVehicle({ editMode = false, vehicleData = newVehicleTemplate }) {
+  const editableFields = [
+    "imageLink",
+    "registrationNumber",
+    "fullName",
+    "street",
+    "city",
+    "province",
+    "postalCode",
+    "country",
+  ];
+
+  function sentenceCase(key) {
+    return key
+      .replace(/([A-Z])/g, " $1")
+      .replace(/^./, (str) => str.toUpperCase());
+  }
+
+  const vehicleFieldKeys = [
+    "imageLink",
+    "make",
+    "model",
+    "year",
+    "color",
+    "registrationNumber",
+    "mileage",
+  ];
+
+  const ownerFieldKeys = ["fullName", "idNumber"];
+
+  const addressFieldKeys = [
+    "street",
+    "city",
+    "province",
+    "postalCode",
+    "country",
+  ];
+
+  const policyFieldKeys = [
+    "policyNumber",
+    "planType",
+    "premium",
+    "startDate",
+    "endDate",
+    "excess",
+    "insuredValue",
+    "paymentMethod",
+    "status",
+  ];
+
+  const makeFields = (keys) =>
+    keys.map((key) => ({
+      key,
+      placeholder: sentenceCase(key),
+    }));
+
+  const vehicleFields = makeFields(vehicleFieldKeys);
+  const ownerFields = makeFields(ownerFieldKeys);
+  const addressFields = makeFields(addressFieldKeys);
+  const policyFields = makeFields(policyFieldKeys);
+
+  const handleSubmit = () => {
+    console.log(vehicleData);
+  };
+
+  const disableField = (key) => editMode && !editableFields.includes(key);
+
+  return (
+    <>
+      <h1>Vehicle Information</h1>
+      {vehicleFields.map(({ key, placeholder }) => (
+        <VehicleInput
+          key={key}
+          onChange={(event) => {
+            vehicleData.vehicle[key] = event.target.value;
+          }}
+          placeholder={placeholder}
+          disabled={disableField(key)}
+          value={vehicleData.vehicle[key]}
+        />
+      ))}
+
+      <h1>Owner Information</h1>
+      {ownerFields.map(({ key, placeholder }) => (
+        <VehicleInput
+          key={key}
+          onChange={(event) => {
+            vehicleData.vehicle.owner[key] = event.target.value;
+          }}
+          placeholder={placeholder}
+          disabled={disableField(key)}
+          value={vehicleData.vehicle.owner[key]}
+        />
+      ))}
+      {addressFields.map(({ key, placeholder }) => (
+        <VehicleInput
+          key={key}
+          onChange={(event) => {
+            vehicleData.vehicle.owner.address[key] = event.target.value;
+          }}
+          placeholder={placeholder}
+          disabled={disableField(key)}
+          value={vehicleData.vehicle.owner.address[key]}
+        />
+      ))}
+      <h1>Policy Information</h1>
+      {policyFields.map(({ key, placeholder }) => (
+        <VehicleInput
+          key={key}
+          onChange={(event) => {
+            vehicleData.insurancePlan[key] = event.target.value;
+          }}
+          placeholder={placeholder}
+          disabled={disableField(key)}
+          value={vehicleData.insurancePlan[key]}
+        />
+      ))}
+
+      <Button
+        variant="soft"
+        startDecorator={"1"}
+        onClick={() => handleSubmit()}
+      >
+        Submit
+      </Button>
+    </>
+  );
 }
 
 export { NewVehicle };
