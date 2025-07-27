@@ -1,10 +1,15 @@
 import "./App.css";
 import { Home } from "./pages/Home/Home";
 import { Header } from "./components/Header/Header";
-import { Routes, Route, Link } from "react-router";
+import { Routes, Route, Link, Navigate } from "react-router";
 import { useState } from "react";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { Vehicles } from "./pages/Vehicles/Vehicles";
+import { NewVehicle } from "./pages/NewVehicle/NewVehicle";
+import { EditVehicle } from "./pages/EditVehicle/EditVehicle";
+import { ConfirmationPage } from "./pages/ConfirmationPage/ConfirmationPage";
+import { VehicleQuotes } from "./pages/VehicleQuotes/VehicleQuotes";
+import { PageNotFound } from "./pages/PageNotFound/PageNotFound";
 import { INITIAL_VEHICLES_DATA } from "./constants";
 
 function App() {
@@ -26,18 +31,17 @@ function App() {
           path="/dashboard"
           element={<Dashboard vehicleData={vehicleData} />}
         />
-        <Route path="/vehicles/new" element={<></>} />
+        <Route path="/vehicles/new" element={<NewVehicle />} />
+        <Route path="/vehicles/:id/edit" element={<EditVehicle />} />
+        <Route path="/quotes/:vehicleId" element={<VehicleQuotes />} />
+        <Route path="/confirm" element={<ConfirmationPage />} />
+        <Route path="/notfound" element={<PageNotFound />} />
+
         <Route
-          path="/vehicles/:id/edit"
-          element={
-            <Vehicles
-              vehicleData={vehicleData}
-              setVehicleData={setVehicleData}
-            />
-          }
+          path="/vehicles"
+          element={<Navigate to="/dashboard" replace />}
         />
-        <Route path="/quotes/:vehicleId" element={<></>} />
-        <Route path="/confirm" element={<></>} />
+        <Route path="*" element={<Navigate to="/notfound" replace />} />
       </Routes>
     </>
   );
