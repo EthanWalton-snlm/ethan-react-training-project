@@ -4,11 +4,18 @@ import Button from "@mui/joy/Button";
 import Divider from "@mui/joy/Divider";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import "./styles.css";
+import { useNavigate } from "react-router-dom";
 
 function Vehicle({ vehicle }) {
   console.log(vehicle);
   const car = vehicle.vehicle;
   const plan = vehicle.insurancePlan;
+  const navigate = useNavigate();
+
+  const editVehicleRedirect = (id) => {
+    console.log(`Clicked ${id}`);
+    navigate(`/vehicles/${id}/edit`);
+  };
 
   console.log("2" + car);
   return (
@@ -35,7 +42,11 @@ function Vehicle({ vehicle }) {
             </div>
           </div>
           <Divider orientation="horizontal" />
-          <Button variant="soft" startDecorator={<ModeEditIcon />}>
+          <Button
+            variant="soft"
+            startDecorator={<ModeEditIcon />}
+            onClick={() => editVehicleRedirect(car.vehicleId)}
+          >
             Edit
           </Button>
         </div>
