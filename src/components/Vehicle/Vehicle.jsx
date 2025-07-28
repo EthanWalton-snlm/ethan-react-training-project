@@ -8,8 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 function Vehicle({ vehicle }) {
   console.log(vehicle);
-  const car = vehicle.vehicle;
-  const plan = vehicle.insurancePlan;
   const navigate = useNavigate();
 
   const editVehicleRedirect = (id) => {
@@ -17,7 +15,6 @@ function Vehicle({ vehicle }) {
     navigate(`/vehicles/${id}/edit`);
   };
 
-  console.log("2" + car);
   return (
     <>
       <Card
@@ -30,22 +27,22 @@ function Vehicle({ vehicle }) {
       >
         <div className="inner-card">
           <div className="car-image-container">
-            <img className="car-image" src={car.imageLink} />
+            <img className="car-image" src={vehicle.imageLink} />
           </div>
           <div className="vehicle-info-container">
             <div className="vehicle-specs">
-              <h3 className="vehicle-title">{`${car.year} ${car.make} ${car.model}`}</h3>
-              <h4 className="vehicle-subheading">{`${car.registrationNumber}`}</h4>
+              <h3 className="vehicle-title">{`${vehicle.year} ${vehicle.make} ${vehicle.model}`}</h3>
+              <h4 className="vehicle-subheading">{`${vehicle.registrationNumber}`}</h4>
             </div>
             <div className="plan-price">
-              <p className="plan-price-text">{`R${plan.premium} p/m`}</p>
+              <p className="plan-price-text">{`R${vehicle.premium} p/m`}</p>
             </div>
           </div>
           <Divider orientation="horizontal" />
           <Button
             variant="soft"
             startDecorator={<ModeEditIcon />}
-            onClick={() => editVehicleRedirect(car.registrationNumber)}
+            onClick={() => editVehicleRedirect(vehicle.registrationNumber)}
           >
             Edit
           </Button>

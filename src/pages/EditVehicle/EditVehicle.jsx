@@ -4,9 +4,7 @@ import { useParams } from "react-router";
 function EditVehicle({ vehicleData }) {
   const { id } = useParams();
   const findVehicleById = (id) =>
-    vehicleData.filter(
-      (vehicle) => id === vehicle.vehicle.registrationNumber
-    )[0];
+    vehicleData.filter((vehicle) => id === vehicle.registrationNumber)[0];
 
   return <NewVehicle editMode={true} vehicleData={findVehicleById(id)} />;
 }

@@ -1,5 +1,6 @@
 const INITIAL_VEHICLES_DATA = [
   {
+    id: "1",
     vehicle: {
       imageLink:
         "https://file.kelleybluebookimages.com/kbb/base/evox/CP/13488/2021-Toyota-Corolla-front_13488_032_1809x771_1F7_cropped.png",
@@ -35,38 +36,60 @@ const INITIAL_VEHICLES_DATA = [
   },
 ];
 
-const newVehicleTemplate = {
-  vehicle: {
-    imageLink: "",
-    make: "",
-    model: "",
-    year: 0,
-    color: "",
-    registrationNumber: "",
-    mileage: 0,
-    owner: {
-      fullName: "",
-      idNumber: "",
-      address: {
-        street: "",
-        city: "",
-        province: "",
-        postalCode: "",
-        country: "",
-      },
-    },
-  },
-  insurancePlan: {
+const INITIAL_VEHICLES_DATA_FLAT = [
+  {
+    id: "1",
+    imageLink:
+      "https://file.kelleybluebookimages.com/kbb/base/evox/CP/13488/2021-Toyota-Corolla-front_13488_032_1809x771_1F7_cropped.png",
+    make: "Toyota",
+    model: "Corolla",
+    year: 2021,
+    color: "Silver",
+    registrationNumber: "CA1234567",
+    mileage: 45000,
+    ownerFullName: "Ethan Walton",
+    ownerIdNumber: "0307220000001",
+    street: "123 Main Road",
+    city: "Cape Town",
+    province: "Western Cape",
+    postalCode: "8000",
+    country: "South Africa",
     policyNumber: "INS-1",
-    planType: "",
-    premium: 0.0,
+    planType: "Bronze",
+    premium: 850.0,
     startDate: "2025-01-01",
     endDate: "2025-12-31",
-    excess: 0.0,
-    insuredValue: 0.0,
-    paymentMethod: "",
-    status: "",
+    excess: 3000.0,
+    insuredValue: 210000.0,
+    paymentMethod: "Debit Order",
+    status: "Active",
   },
+];
+
+const newVehicleTemplate = {
+  imageLink: "",
+  make: "",
+  model: "",
+  year: 0,
+  color: "",
+  registrationNumber: "",
+  mileage: 0,
+  fullName: "",
+  idNumber: "",
+  street: "",
+  city: "",
+  province: "",
+  postalCode: "",
+  country: "",
+  policyNumber: "INS-1",
+  planType: "",
+  premium: 0.0,
+  startDate: "2025-01-01",
+  endDate: "2025-12-31",
+  excess: 0.0,
+  insuredValue: 0.0,
+  paymentMethod: "",
+  status: "",
 };
 
-export { INITIAL_VEHICLES_DATA, newVehicleTemplate };
+export { newVehicleTemplate };

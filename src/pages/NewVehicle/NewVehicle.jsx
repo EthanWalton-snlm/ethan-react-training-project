@@ -76,11 +76,11 @@ function NewVehicle({ editMode = false, vehicleData = newVehicleTemplate }) {
         <VehicleInput
           key={key}
           onChange={(event) => {
-            vehicleData.vehicle[key] = event.target.value;
+            vehicleData[key] = event.target.value;
           }}
           placeholder={placeholder}
           disabled={disableField(key)}
-          value={vehicleData.vehicle[key]}
+          value={vehicleData[key]}
         />
       ))}
 
@@ -89,22 +89,22 @@ function NewVehicle({ editMode = false, vehicleData = newVehicleTemplate }) {
         <VehicleInput
           key={key}
           onChange={(event) => {
-            vehicleData.vehicle.owner[key] = event.target.value;
+            vehicleData[key] = event.target.value;
           }}
           placeholder={placeholder}
           disabled={disableField(key)}
-          value={vehicleData.vehicle.owner[key]}
+          value={vehicleData[key]}
         />
       ))}
       {addressFields.map(({ key, placeholder }) => (
         <VehicleInput
           key={key}
           onChange={(event) => {
-            vehicleData.vehicle.owner.address[key] = event.target.value;
+            vehicleData[key] = event.target.value;
           }}
           placeholder={placeholder}
           disabled={disableField(key)}
-          value={vehicleData.vehicle.owner.address[key]}
+          value={vehicleData[key]}
         />
       ))}
       <h1>Policy Information</h1>
@@ -112,11 +112,11 @@ function NewVehicle({ editMode = false, vehicleData = newVehicleTemplate }) {
         <VehicleInput
           key={key}
           onChange={(event) => {
-            vehicleData.insurancePlan[key] = event.target.value;
+            vehicleData[key] = event.target.value;
           }}
           placeholder={placeholder}
           disabled={disableField(key)}
-          value={vehicleData.insurancePlan[key]}
+          value={vehicleData[key]}
         />
       ))}
 
