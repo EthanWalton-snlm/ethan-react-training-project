@@ -3,7 +3,11 @@ import Button from "@mui/joy/Button";
 import { newVehicleTemplate } from "../../constants";
 import { useNavigate } from "react-router-dom";
 
-function NewVehicle({ editMode = false, vehicleData = newVehicleTemplate }) {
+function NewVehicle({
+  editMode = false,
+  vehicleData = newVehicleTemplate,
+  updateData,
+}) {
   const editableFields = [
     "imageLink",
     "registrationNumber",
@@ -78,6 +82,8 @@ function NewVehicle({ editMode = false, vehicleData = newVehicleTemplate }) {
     console.log(data);
 
     navigate(`/dashboard`);
+
+    updateData();
   }
 
   async function handleEditSubmit() {
@@ -92,7 +98,7 @@ function NewVehicle({ editMode = false, vehicleData = newVehicleTemplate }) {
 
     navigate(`/dashboard`);
 
-    // TODO: refresh data in App.jsx
+    updateData();
   }
 
   const disableField = (key) => editMode && !editableFields.includes(key);

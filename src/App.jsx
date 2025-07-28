@@ -46,9 +46,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route
           path="/dashboard"
-          element={<Dashboard vehicleData={vehicleData} />}
+          element={
+            <Dashboard vehicleData={vehicleData} updateData={getVehiclesData} />
+          }
         />
-        <Route path="/vehicles/new" element={<NewVehicle />} />
+        <Route
+          path="/vehicles/new"
+          element={<NewVehicle updateData={getVehiclesData} />}
+        />
         <Route
           path="/vehicles/:id/edit"
           element={<EditVehicle vehicleData={vehicleData} />}

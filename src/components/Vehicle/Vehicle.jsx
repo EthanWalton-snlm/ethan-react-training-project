@@ -11,7 +11,7 @@ import Modal from "@mui/joy/Modal";
 import ModalDialog from "@mui/joy/ModalDialog";
 import ModalClose from "@mui/joy/ModalClose";
 
-function Vehicle({ vehicle }) {
+function Vehicle({ vehicle, updateData }) {
   const [deleteModal, setDeleteModal] = useState(false);
   console.log(vehicle);
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ function Vehicle({ vehicle }) {
 
     console.log("Deleted", data);
 
-    // TODO: refresh data in App.jsx
+    updateData();
 
     setDeleteModal(false);
     navigate(`/dashboard`);
