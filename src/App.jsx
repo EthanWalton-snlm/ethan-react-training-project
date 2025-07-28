@@ -12,11 +12,18 @@ import { VehicleQuotes } from "./pages/VehicleQuotes/VehicleQuotes";
 import { PageNotFound } from "./pages/PageNotFound/PageNotFound";
 
 function App() {
+  // TODO: notification instead of console logging everywhere
+  // TODO: loading screen
+  // TODO: add headers "application/json" in fetch calls
+  // TODO: read mock api docs for filter/sort and for registration searching https://6402db84f61d96ac487212a6.mockapi.io/movies?search=of
   const [vehicleData, setVehicleData] = useState([]);
 
   async function getVehiclesData() {
     const API = "https://68871b80071f195ca97f4670.mockapi.io/vehicles";
-    const response = await fetch(API);
+    const response = await fetch(API, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
     const data = await response.json();
 
     console.log("Vehicle Data Retrieved");

@@ -38,11 +38,11 @@ function Vehicle({ vehicle, updateData }) {
   return (
     <>
       <Card
-        color="primary"
+        color="#fcfffeff"
         invertedColors={false}
         orientation="vertical"
         size="sm"
-        variant="outlined"
+        variant="soft"
         className="card"
       >
         <div className="inner-card">

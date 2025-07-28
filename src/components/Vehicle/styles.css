@@ -1,6 +1,13 @@
 .card {
-  max-width: 25em;
+  width: 20em;
   border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  transition: transform 0.25s ease;
+}
+
+.card:hover {
+  transform: scale(1.01);
 }
 
 .inner-card {
@@ -50,12 +57,12 @@
 }
 
 .car-image-container {
-  width: 100%;
+  width: 90%;
   height: 14em;
   border-radius: 12px;
   overflow: hidden;
   display: flex;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin: 0 auto;
 }
 
 .car-image {
