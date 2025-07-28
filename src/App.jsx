@@ -40,42 +40,53 @@ function App() {
   }, [setVehicleData]);
 
   return (
-    <>
-      <div className="app">
-        <Header
+    <div className="app-layout">
+      <div className="navigation">
+        {/* <Header
           dashboard={<Link to="/dashboard">Dashboard</Link>}
           vehicles={<Link to="/vehicles/new">New Vehicle</Link>}
           quotes={<Link to="/quotes">Quotes</Link>}
+        /> */}
+        <Header
+          options={[
+            { label: "Dashboard", link: "/dashboard" },
+            { label: "New Vehicle", link: "/vehicles/new" },
+            { label: "Quotes", link: "/quotes" },
+          ]}
         />
       </div>
+      <div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/dashboard"
+            element={
+              <Dashboard
+                vehicleData={vehicleData}
+                updateData={getVehiclesData}
+              />
+            }
+          />
+          <Route
+            path="/vehicles/new"
+            element={<NewVehicle updateData={getVehiclesData} />}
+          />
+          <Route
+            path="/vehicles/:id/edit"
+            element={<EditVehicle vehicleData={vehicleData} />}
+          />
+          <Route path="/quotes/:vehicleId" element={<VehicleQuotes />} />
+          <Route path="/confirm" element={<ConfirmationPage />} />
+          <Route path="/notfound" element={<PageNotFound />} />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/dashboard"
-          element={
-            <Dashboard vehicleData={vehicleData} updateData={getVehiclesData} />
-          }
-        />
-        <Route
-          path="/vehicles/new"
-          element={<NewVehicle updateData={getVehiclesData} />}
-        />
-        <Route
-          path="/vehicles/:id/edit"
-          element={<EditVehicle vehicleData={vehicleData} />}
-        />
-        <Route path="/quotes/:vehicleId" element={<VehicleQuotes />} />
-        <Route path="/confirm" element={<ConfirmationPage />} />
-        <Route path="/notfound" element={<PageNotFound />} />
-
-        <Route
-          path="/vehicles"
-          element={<Navigate to="/dashboard" replace />}
-        />
-        <Route path="*" element={<Navigate to="/notfound" replace />} />
-      </Routes>
-    </>
+          <Route
+            path="/vehicles"
+            element={<Navigate to="/dashboard" replace />}
+          />
+          <Route path="*" element={<Navigate to="/notfound" replace />} />
+        </Routes>
+      </div>
+    </div>
   );
 }
 
