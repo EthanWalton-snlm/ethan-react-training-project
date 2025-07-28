@@ -3,17 +3,36 @@ import Card from "@mui/joy/Card";
 import Button from "@mui/joy/Button";
 import Divider from "@mui/joy/Divider";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Modal from "@mui/joy/Modal";
+import ModalDialog from "@mui/joy/ModalDialog";
+import ModalClose from "@mui/joy/ModalClose";
 
 function Vehicle({ vehicle }) {
+  const [deleteModal, setDeleteModal] = useState(false);
   console.log(vehicle);
   const navigate = useNavigate();
 
   const editVehicleRedirect = (id) => {
-    console.log(`Clicked ${id}`);
     navigate(`/vehicles/${id}/edit`);
   };
+
+  async function deleteVehicle() {
+    const API = `https://68871b80071f195ca97f4670.mockapi.io/vehicles/${vehicle.id}`;
+    const response = await fetch(API, {
+      method: "DELETE",
+    });
+    const data = await response.json();
+
+    console.log("Deleted", data);
+
+    // TODO: refresh data in App.jsx
+
+    setDeleteModal(false);
+  }
 
   return (
     <>
@@ -46,8 +65,45 @@ function Vehicle({ vehicle }) {
           >
             Edit
           </Button>
+          <Button
+            variant="soft"
+            color="danger"
+            startDecorator={<DeleteIcon />}
+            onClick={() => setDeleteModal(true)}
+          >
+            Delete
+          </Button>
         </div>
       </Card>
+
+      <Modal open={deleteModal} onClose={() => setDeleteModal(false)}>
+        <ModalDialog>
+          <ModalClose />
+          <h1>
+            Delete{" "}
+            {`${vehicle.year} ${vehicle.make} ${vehicle.model} with registration ${vehicle.registrationNumber}`}
+            ?
+          </h1>
+          {/* <Typography>Modal title</Typography> */}
+
+          <Button
+            color="neutral"
+            onClick={() => setDeleteModal(false)}
+            size="md"
+            variant="outlined"
+          >
+            Cancel
+          </Button>
+          <Button
+            color="danger"
+            onClick={() => deleteVehicle(vehicle.registrationNumber)}
+            size="md"
+            variant="outlined"
+          >
+            Permanently Delete
+          </Button>
+        </ModalDialog>
+      </Modal>
     </>
   );
 }

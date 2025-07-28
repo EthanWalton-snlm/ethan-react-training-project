@@ -56,16 +56,15 @@ const INITIAL_VEHICLES_DATA_FLAT = [
     country: "South Africa",
     policyNumber: "INS-1",
     planType: "Bronze",
-    premium: 850.0,
+    premium: 850,
     startDate: "2025-01-01",
     endDate: "2025-12-31",
-    excess: 3000.0,
-    insuredValue: 210000.0,
+    excess: 3000,
+    insuredValue: 210000,
     paymentMethod: "Debit Order",
     status: "Active",
   },
 ];
-
 const newVehicleTemplate = {
   imageLink: "",
   make: "",

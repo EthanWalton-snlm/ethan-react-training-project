@@ -63,9 +63,18 @@ function NewVehicle({ editMode = false, vehicleData = newVehicleTemplate }) {
   const addressFields = makeFields(addressFieldKeys);
   const policyFields = makeFields(policyFieldKeys);
 
-  const handleSubmit = () => {
+  async function handleSubmit() {
     console.log(vehicleData);
-  };
+
+    const API = "https://68871b80071f195ca97f4670.mockapi.io/vehicles";
+    const response = await fetch(API, {
+      method: "POST",
+      body: JSON.stringify(vehicleData),
+    });
+    const data = await response.json();
+
+    console.log(data);
+  }
 
   const disableField = (key) => editMode && !editableFields.includes(key);
 

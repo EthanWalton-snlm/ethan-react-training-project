@@ -19,7 +19,7 @@ function App() {
     const response = await fetch(API);
     const data = await response.json();
 
-    console.log("DATA", data);
+    console.log("Vehicle Data Retrieved");
 
     setVehicleData(data);
   }
@@ -30,7 +30,7 @@ function App() {
     /* return () => {
        console.log("Unmounted")
     } */
-  }, []);
+  }, [setVehicleData]);
 
   return (
     <>
