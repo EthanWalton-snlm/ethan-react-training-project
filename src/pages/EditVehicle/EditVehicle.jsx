@@ -1,12 +1,23 @@
 import { NewVehicle } from "../NewVehicle/NewVehicle";
 import { useParams } from "react-router";
+import { PageNotFound } from "../PageNotFound/PageNotFound";
 
 function EditVehicle({ vehicleData }) {
   const { id } = useParams();
-  const findVehicleById = (id) =>
-    vehicleData.filter((vehicle) => id === vehicle.registrationNumber)[0];
 
-  return <NewVehicle editMode={true} vehicleData={findVehicleById(id)} />;
+  const vehicle = vehicleData.filter(
+    (vehicle) => id === vehicle.registrationNumber
+  );
+
+  return (
+    <>
+      {vehicle.length > 0 ? (
+        <NewVehicle editMode={true} vehicleData={vehicle[0]} />
+      ) : (
+        <PageNotFound />
+      )}
+    </>
+  );
 }
 
 export { EditVehicle };

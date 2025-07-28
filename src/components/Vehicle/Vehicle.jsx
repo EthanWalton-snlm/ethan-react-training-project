@@ -32,6 +32,7 @@ function Vehicle({ vehicle }) {
     // TODO: refresh data in App.jsx
 
     setDeleteModal(false);
+    navigate(`/dashboard`);
   }
 
   return (

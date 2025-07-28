@@ -1,6 +1,7 @@
 import { VehicleInput } from "../../components/VehicleInput/VehicleInput";
 import Button from "@mui/joy/Button";
 import { newVehicleTemplate } from "../../constants";
+import { useNavigate } from "react-router-dom";
 
 function NewVehicle({ editMode = false, vehicleData = newVehicleTemplate }) {
   const editableFields = [
@@ -62,6 +63,7 @@ function NewVehicle({ editMode = false, vehicleData = newVehicleTemplate }) {
   const ownerFields = makeFields(ownerFieldKeys);
   const addressFields = makeFields(addressFieldKeys);
   const policyFields = makeFields(policyFieldKeys);
+  const navigate = useNavigate();
 
   async function handleSubmit() {
     console.log(vehicleData);
@@ -74,6 +76,23 @@ function NewVehicle({ editMode = false, vehicleData = newVehicleTemplate }) {
     const data = await response.json();
 
     console.log(data);
+
+    navigate(`/dashboard`);
+  }
+
+  async function handleEditSubmit() {
+    const API = `https://68871b80071f195ca97f4670.mockapi.io/vehicles/${vehicleData.id}`;
+    const response = await fetch(API, {
+      method: "PUT",
+      body: JSON.stringify(vehicleData),
+    });
+    const data = await response.json();
+
+    console.log("Updated", data);
+
+    navigate(`/dashboard`);
+
+    // TODO: refresh data in App.jsx
   }
 
   const disableField = (key) => editMode && !editableFields.includes(key);
@@ -129,13 +148,23 @@ function NewVehicle({ editMode = false, vehicleData = newVehicleTemplate }) {
         />
       ))}
 
-      <Button
-        variant="soft"
-        startDecorator={"1"}
-        onClick={() => handleSubmit()}
-      >
-        Submit
-      </Button>
+      {editMode ? (
+        <Button
+          variant="soft"
+          startDecorator={"1"}
+          onClick={() => handleEditSubmit()}
+        >
+          Submit Changes
+        </Button>
+      ) : (
+        <Button
+          variant="soft"
+          startDecorator={"1"}
+          onClick={() => handleSubmit()}
+        >
+          Submit
+        </Button>
+      )}
     </>
   );
 }
