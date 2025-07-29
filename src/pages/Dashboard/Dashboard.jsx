@@ -1,8 +1,8 @@
 import Button from "@mui/joy/Button";
 import { Vehicles } from "../../pages/Vehicles/Vehicles";
 import Typography from "@mui/joy/Typography";
-import "./styles.css";
 import Divider from "@mui/joy/Divider";
+import "./styles.css";
 
 function Dashboard({ vehicleData, updateData }) {
   return (

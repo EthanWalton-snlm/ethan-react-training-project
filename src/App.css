@@ -17,6 +17,7 @@ body {
 }
 
 .navigation {
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
   height: auto;
+  background-color: var(--joy-palette-primary-500, #0b6bcb);
 }

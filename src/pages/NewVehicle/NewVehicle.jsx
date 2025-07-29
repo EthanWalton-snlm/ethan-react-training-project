@@ -2,6 +2,11 @@ import { VehicleInput } from "../../components/VehicleInput/VehicleInput";
 import Button from "@mui/joy/Button";
 import { newVehicleTemplate } from "../../constants";
 import { useNavigate } from "react-router-dom";
+import "./styles.css";
+import Typography from "@mui/joy/Typography";
+import Divider from "@mui/joy/Divider";
+import DoneAllIcon from "@mui/icons-material/DoneAll";
+import FileUploadIcon from "@mui/icons-material/FileUpload";
 
 function NewVehicle({
   editMode = false,
@@ -104,74 +109,104 @@ function NewVehicle({
   const disableField = (key) => editMode && !editableFields.includes(key);
 
   return (
-    <>
-      <h1>Vehicle Information</h1>
-      {vehicleFields.map(({ key, placeholder }) => (
-        <VehicleInput
-          key={key}
-          onChange={(event) => {
-            vehicleData[key] = event.target.value;
-          }}
-          placeholder={placeholder}
-          disabled={disableField(key)}
-          value={vehicleData[key]}
-        />
-      ))}
+    <div className="new-vehicle">
+      <div className="form-section-container">
+        <div>
+          <Typography level="h2" variant="plain" sx={{ color: "primary.800" }}>
+            Vehicle Information
+          </Typography>
+          <Divider orientation="horizontal" />
+        </div>
+        <div className="form-section">
+          {vehicleFields.map(({ key, placeholder }) => (
+            <VehicleInput
+              key={key}
+              onChange={(event) => {
+                vehicleData[key] = event.target.value;
+              }}
+              placeholder={placeholder}
+              disabled={disableField(key)}
+              value={vehicleData[key]}
+            />
+          ))}
+        </div>
+      </div>
 
-      <h1>Owner Information</h1>
-      {ownerFields.map(({ key, placeholder }) => (
-        <VehicleInput
-          key={key}
-          onChange={(event) => {
-            vehicleData[key] = event.target.value;
-          }}
-          placeholder={placeholder}
-          disabled={disableField(key)}
-          value={vehicleData[key]}
-        />
-      ))}
-      {addressFields.map(({ key, placeholder }) => (
-        <VehicleInput
-          key={key}
-          onChange={(event) => {
-            vehicleData[key] = event.target.value;
-          }}
-          placeholder={placeholder}
-          disabled={disableField(key)}
-          value={vehicleData[key]}
-        />
-      ))}
-      <h1>Policy Information</h1>
-      {policyFields.map(({ key, placeholder }) => (
-        <VehicleInput
-          key={key}
-          onChange={(event) => {
-            vehicleData[key] = event.target.value;
-          }}
-          placeholder={placeholder}
-          disabled={disableField(key)}
-          value={vehicleData[key]}
-        />
-      ))}
+      <div className="form-section-container">
+        <div>
+          <Typography level="h2" variant="plain" sx={{ color: "primary.800" }}>
+            Owner Information
+          </Typography>
+          <Divider orientation="horizontal" />
+        </div>
+        <div className="form-section">
+          {ownerFields.map(({ key, placeholder }) => (
+            <VehicleInput
+              key={key}
+              onChange={(event) => {
+                vehicleData[key] = event.target.value;
+              }}
+              placeholder={placeholder}
+              disabled={disableField(key)}
+              value={vehicleData[key]}
+            />
+          ))}
+
+          {addressFields.map(({ key, placeholder }) => (
+            <VehicleInput
+              key={key}
+              onChange={(event) => {
+                vehicleData[key] = event.target.value;
+              }}
+              placeholder={placeholder}
+              disabled={disableField(key)}
+              value={vehicleData[key]}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="form-section-container">
+        <div>
+          <Typography level="h2" variant="plain" sx={{ color: "primary.800" }}>
+            Policy Information
+          </Typography>
+          <Divider orientation="horizontal" />
+        </div>
+        <div className="form-section">
+          {policyFields.map(({ key, placeholder }) => (
+            <VehicleInput
+              key={key}
+              onChange={(event) => {
+                vehicleData[key] = event.target.value;
+              }}
+              placeholder={placeholder}
+              disabled={disableField(key)}
+              value={vehicleData[key]}
+            />
+          ))}
+        </div>
+      </div>
 
       {editMode ? (
         <Button
           variant="soft"
-          startDecorator={"1"}
+          startDecorator={<FileUploadIcon />}
           onClick={() => handleEditSubmit()}
+          className="submit-button"
         >
           Submit Changes
         </Button>
       ) : (
         <Button
           variant="soft"
-          startDecorator={"1"}
+          startDecorator={<DoneAllIcon />}
           onClick={() => handleSubmit()}
+          className="submit-button"
         >
-          Submit
+          Submit Vehicle
         </Button>
       )}
-    </>
+    </div>
   );
 }
 
