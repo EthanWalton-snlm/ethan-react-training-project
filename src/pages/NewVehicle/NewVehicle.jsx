@@ -49,11 +49,9 @@ function NewVehicle({
   const policyFieldKeys = [
     "policyNumber",
     "planType",
-    "premium",
     "startDate",
     "endDate",
     "excess",
-    "insuredValue",
     "paymentMethod",
     "status",
   ];
@@ -201,6 +199,35 @@ function NewVehicle({
               value={vehicleData[key]}
             />
           ))}
+          <VehicleInput
+            key="insuredValue"
+            placeholder="Insured Value"
+            disabled={true}
+            value={
+              VEHICLE_INFO.filter((car) => car.brand === vehicleMake)[0]
+                ?.value ?? vehicleData.insuredValue
+            }
+            onChange={
+              (vehicleData.insuredValue =
+                VEHICLE_INFO.filter((car) => car.brand === vehicleMake)[0]
+                  ?.value ?? vehicleData.insuredValue)
+            }
+          />
+
+          <VehicleInput
+            key="premium"
+            placeholder="Premium"
+            disabled={true}
+            value={(
+              (VEHICLE_INFO.filter((car) => car.brand === vehicleMake)[0]
+                ?.value ?? vehicleData.insuredValue) / 150
+            ).toFixed(2)}
+            onChange={
+              (vehicleData.premium =
+                VEHICLE_INFO.filter((car) => car.brand === vehicleMake)[0]
+                  ?.value ?? vehicleData.insuredValue / 150)
+            }
+          />
         </div>
       </div>
 

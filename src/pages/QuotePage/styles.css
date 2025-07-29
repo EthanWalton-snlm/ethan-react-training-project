@@ -1,0 +1,14 @@
+.quotes-container {
+  margin: 5rem;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  height: 100vh;
+}
+
+.quotes {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+}

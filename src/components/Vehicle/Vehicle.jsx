@@ -1,4 +1,3 @@
-import { CardContent } from "@mui/joy";
 import Card from "@mui/joy/Card";
 import Button from "@mui/joy/Button";
 import Divider from "@mui/joy/Divider";

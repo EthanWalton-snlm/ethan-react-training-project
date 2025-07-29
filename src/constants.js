@@ -111,6 +111,7 @@ const VEHICLE_INFO = [
       "Mii",
       "Toledo",
     ],
+    value: 100000,
   },
   {
     brand: "Renault",
@@ -146,6 +147,7 @@ const VEHICLE_INFO = [
       "Wind",
       "Zoé",
     ],
+    value: 110000,
   },
   {
     brand: "Peugeot",
@@ -187,6 +189,7 @@ const VEHICLE_INFO = [
       "Bipper",
       "RCZ",
     ],
+    value: 130000,
   },
   {
     brand: "Dacia",
@@ -200,6 +203,7 @@ const VEHICLE_INFO = [
       "Sandero",
       "Solenza",
     ],
+    value: 130000,
   },
   {
     brand: "Citroën",
@@ -234,6 +238,7 @@ const VEHICLE_INFO = [
       "Xantia",
       "Xsara",
     ],
+    value: 140000,
   },
   {
     brand: "Opel",
@@ -264,6 +269,7 @@ const VEHICLE_INFO = [
       "Vivaro Kombi",
       "Zafira",
     ],
+    value: 150000,
   },
   {
     brand: "Alfa Romeo",
@@ -288,6 +294,7 @@ const VEHICLE_INFO = [
       "Giulietta",
       "Giulia",
     ],
+    value: 300000,
   },
   {
     brand: "Škoda",
@@ -308,6 +315,7 @@ const VEHICLE_INFO = [
       "Superb",
       "Superb Combi",
     ],
+    value: 100000,
   },
   {
     brand: "Chevrolet",
@@ -338,6 +346,7 @@ const VEHICLE_INFO = [
       "Tahoe",
       "Trax",
     ],
+    value: 180000,
   },
   {
     brand: "Porsche",
@@ -355,6 +364,7 @@ const VEHICLE_INFO = [
       "Macan",
       "Panamera",
     ],
+    value: 2000000,
   },
   {
     brand: "Honda",
@@ -379,6 +389,7 @@ const VEHICLE_INFO = [
       "Legend",
       "Prelude",
     ],
+    value: 200000,
   },
   {
     brand: "Subaru",
@@ -398,6 +409,7 @@ const VEHICLE_INFO = [
       "Tribeca B9",
       "XV",
     ],
+    value: 400000,
   },
   {
     brand: "Mazda",
@@ -431,6 +443,7 @@ const VEHICLE_INFO = [
       "RX-8",
       "Xedox 6",
     ],
+    value: 500000,
   },
   {
     brand: "Mitsubishi",
@@ -461,6 +474,7 @@ const VEHICLE_INFO = [
       "Pajero Wagon",
       "Space Star",
     ],
+    value: 160000,
   },
   {
     brand: "Lexus",
@@ -483,6 +497,7 @@ const VEHICLE_INFO = [
       "RX 450h",
       "SC 430",
     ],
+    value: 600000,
   },
   {
     brand: "Toyota",
@@ -521,6 +536,7 @@ const VEHICLE_INFO = [
       "Yaris",
       "Yaris Verso",
     ],
+    value: 100000,
   },
   {
     brand: "BMW",
@@ -567,6 +583,7 @@ const VEHICLE_INFO = [
       "Z4",
       "Z4 Roadster",
     ],
+    value: 1000000,
   },
   {
     brand: "Volkswagen",
@@ -620,6 +637,7 @@ const VEHICLE_INFO = [
       "Touareg",
       "Touran",
     ],
+    value: 300000,
   },
   {
     brand: "Suzuki",
@@ -641,6 +659,7 @@ const VEHICLE_INFO = [
       "Vitara",
       "Wagon R+",
     ],
+    value: 150000,
   },
   {
     brand: "Mercedes-Benz",
@@ -704,6 +723,7 @@ const VEHICLE_INFO = [
       "SLR",
       "Sprinter",
     ],
+    value: 1500000,
   },
   {
     brand: "Saab",
@@ -719,6 +739,7 @@ const VEHICLE_INFO = [
       "900 C Turbo",
       "9000",
     ],
+    value: 100000,
   },
   {
     brand: "Audi",
@@ -769,6 +790,7 @@ const VEHICLE_INFO = [
       "TT Roadster",
       "TTS",
     ],
+    value: 300000,
   },
   {
     brand: "Kia",
@@ -798,6 +820,7 @@ const VEHICLE_INFO = [
       "Sportage",
       "Venga",
     ],
+    value: 100000,
   },
   {
     brand: "Land Rover",
@@ -811,6 +834,7 @@ const VEHICLE_INFO = [
       "Range Rover Evoque",
       "Range Rover Sport",
     ],
+    value: 1000000,
   },
   {
     brand: "Dodge",
@@ -827,6 +851,7 @@ const VEHICLE_INFO = [
       "Stealth",
       "Viper",
     ],
+    value: 1000000,
   },
   {
     brand: "Chrysler",
@@ -848,6 +873,7 @@ const VEHICLE_INFO = [
       "Town & Country",
       "Voyager",
     ],
+    value: 1200000,
   },
   {
     brand: "Ford",
@@ -899,6 +925,7 @@ const VEHICLE_INFO = [
       "Transit Van 350",
       "Windstar",
     ],
+    value: 200000,
   },
   { brand: "Hummer", models: ["H2", "H3"] },
   {
@@ -936,8 +963,13 @@ const VEHICLE_INFO = [
       "Tucson",
       "Veloster",
     ],
+    value: 2000000,
   },
-  { brand: "Infiniti", models: ["EX", "FX", "G", "G Coupé", "M", "Q", "QX"] },
+  {
+    brand: "Infiniti",
+    models: ["EX", "FX", "G", "G Coupé", "M", "Q", "QX"],
+    value: 400000,
+  },
   {
     brand: "Jaguar",
     models: [
@@ -961,6 +993,7 @@ const VEHICLE_INFO = [
       "XKR",
       "XKR Convertible",
     ],
+    value: 2500000,
   },
   {
     brand: "Jeep",
@@ -973,6 +1006,7 @@ const VEHICLE_INFO = [
       "Renegade",
       "Wrangler",
     ],
+    value: 800000,
   },
   {
     brand: "Nissan",
@@ -1020,6 +1054,7 @@ const VEHICLE_INFO = [
       "Vanette Cargo",
       "X-Trail",
     ],
+    value: 900000,
   },
   {
     brand: "Volvo",
@@ -1048,6 +1083,7 @@ const VEHICLE_INFO = [
       "XC70",
       "XC90",
     ],
+    value: 200000,
   },
   {
     brand: "Daewoo",
@@ -1066,6 +1102,7 @@ const VEHICLE_INFO = [
       "Tacuma",
       "Tico",
     ],
+    value: 60000,
   },
   {
     brand: "Fiat",
@@ -1119,6 +1156,7 @@ const VEHICLE_INFO = [
       "Uno",
       "X1/9",
     ],
+    value: 100000,
   },
   {
     brand: "MINI",
@@ -1135,10 +1173,12 @@ const VEHICLE_INFO = [
       "Mini One",
       "One D",
     ],
+    value: 350000,
   },
   {
     brand: "Rover",
     models: ["200", "214", "218", "25", "400", "414", "416", "620", "75"],
+    value: 1000000,
   },
   {
     brand: "Smart",
@@ -1151,6 +1191,7 @@ const VEHICLE_INFO = [
       "Fortwo coupé",
       "Roadster",
     ],
+    value: 220000,
   },
 ];
 
