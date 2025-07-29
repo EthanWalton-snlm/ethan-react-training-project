@@ -4,7 +4,7 @@ import { Header } from "./components/Header/Header";
 import { Routes, Route, Link, Navigate } from "react-router";
 import { useState, useEffect } from "react";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
-import { Vehicles } from "./pages/Vehicles/Vehicles";
+import { LoadingScreen } from "./pages/LoadingScreen/LoadingScreen";
 import { NewVehicle } from "./pages/NewVehicle/NewVehicle";
 import { EditVehicle } from "./pages/EditVehicle/EditVehicle";
 import { ConfirmationPage } from "./pages/ConfirmationPage/ConfirmationPage";
@@ -20,8 +20,10 @@ function App() {
   // TODO: view more modal popup on card click, show all data
 
   const [vehicleData, setVehicleData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   async function getVehiclesData() {
+    setIsLoading(true);
     const API = "https://68871b80071f195ca97f4670.mockapi.io/vehicles";
     const response = await fetch(API, {
       method: "GET",
@@ -32,6 +34,7 @@ function App() {
     console.log("Vehicle Data Retrieved");
 
     setVehicleData(data);
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -58,37 +61,41 @@ function App() {
           ]}
         />
       </div>
-      <div>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/dashboard"
-            element={
-              <Dashboard
-                vehicleData={vehicleData}
-                updateData={getVehiclesData}
-              />
-            }
-          />
-          <Route
-            path="/vehicles/new"
-            element={<NewVehicle updateData={getVehiclesData} />}
-          />
-          <Route
-            path="/vehicles/:id/edit"
-            element={<EditVehicle vehicleData={vehicleData} />}
-          />
-          <Route path="/quotes/:vehicleId" element={<VehicleQuotes />} />
-          <Route path="/confirm" element={<ConfirmationPage />} />
-          <Route path="/notfound" element={<PageNotFound />} />
+      {isLoading ? (
+        <LoadingScreen />
+      ) : (
+        <div>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/dashboard"
+              element={
+                <Dashboard
+                  vehicleData={vehicleData}
+                  updateData={getVehiclesData}
+                />
+              }
+            />
+            <Route
+              path="/vehicles/new"
+              element={<NewVehicle updateData={getVehiclesData} />}
+            />
+            <Route
+              path="/vehicles/:id/edit"
+              element={<EditVehicle vehicleData={vehicleData} />}
+            />
+            <Route path="/quotes/:vehicleId" element={<VehicleQuotes />} />
+            <Route path="/confirm" element={<ConfirmationPage />} />
+            <Route path="/notfound" element={<PageNotFound />} />
 
-          <Route
-            path="/vehicles"
-            element={<Navigate to="/dashboard" replace />}
-          />
-          <Route path="*" element={<Navigate to="/notfound" replace />} />
-        </Routes>
-      </div>
+            <Route
+              path="/vehicles"
+              element={<Navigate to="/dashboard" replace />}
+            />
+            <Route path="*" element={<Navigate to="/notfound" replace />} />
+          </Routes>
+        </div>
+      )}
     </div>
   );
 }

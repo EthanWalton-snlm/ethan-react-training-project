@@ -1,5 +1,11 @@
+import "./styles.css";
+
 function PageNotFound() {
-  return <h1>404</h1>;
+  return (
+    <div className="not-found">
+      <h1>404</h1>
+    </div>
+  );
 }
 
 export { PageNotFound };
