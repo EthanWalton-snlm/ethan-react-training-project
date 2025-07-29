@@ -1,5 +1,6 @@
 .dashboard-container {
   margin: 5rem;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -10,4 +11,10 @@
 .alert {
   padding: 1rem;
   padding-bottom: 0;
+}
+
+.heading-container {
+  display: flex;
+  gap: 1em;
+  align-items: center;
 }

@@ -80,32 +80,26 @@ function NewVehicle({
 
   async function handleSubmit() {
     const API = "https://68871b80071f195ca97f4670.mockapi.io/vehicles";
-    const response = await fetch(API, {
+    await fetch(API, {
       method: "POST",
       body: JSON.stringify(vehicleData),
       headers: { "Content-Type": "application/json" },
     });
-    const data = await response.json();
 
-    console.log("Submitted");
-
-    navigate(`/dashboard`);
+    navigate("/dashboard", { state: { status: "created" } });
 
     updateData();
   }
 
   async function handleEditSubmit() {
     const API = `https://68871b80071f195ca97f4670.mockapi.io/vehicles/${vehicleData.id}`;
-    const response = await fetch(API, {
+    await fetch(API, {
       method: "PUT",
       body: JSON.stringify(vehicleData),
       headers: { "Content-Type": "application/json" },
     });
-    const data = await response.json();
 
-    console.log("Updated");
-
-    navigate(`/dashboard`);
+    navigate("/dashboard", { state: { status: "updated" } });
 
     updateData();
   }

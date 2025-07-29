@@ -74,15 +74,6 @@ function App() {
               }
             />
             <Route
-              path="/dashboard/:status"
-              element={
-                <Dashboard
-                  vehicleData={vehicleData}
-                  updateData={getVehiclesData}
-                />
-              }
-            />
-            <Route
               path="/vehicles/new"
               element={<NewVehicle updateData={getVehiclesData} />}
             />

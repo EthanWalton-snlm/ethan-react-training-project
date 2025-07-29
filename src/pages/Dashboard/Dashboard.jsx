@@ -3,20 +3,36 @@ import { Vehicles } from "../../pages/Vehicles/Vehicles";
 import Typography from "@mui/joy/Typography";
 import Divider from "@mui/joy/Divider";
 import "./styles.css";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Alert from "@mui/joy/Alert";
 import IconButton from "@mui/joy/IconButton";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState, useEffect } from "react";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import FactCheckIcon from "@mui/icons-material/FactCheck";
+import RefreshIcon from "@mui/icons-material/Refresh";
 
 function Dashboard({ vehicleData, updateData }) {
-  const { status } = useParams();
+  const location = useLocation();
+  const status = location.state?.status;
   const [alert, setAlert] = useState(false);
 
   useEffect(() => {
-    status === "deleted" ? setAlert(true) : setAlert(false);
+    ["created", "updated", "deleted"].includes(status)
+      ? setAlert(true)
+      : setAlert(false);
   }, [status]);
+
+  const getIcon = (status) => {
+    return status === "deleted" ? (
+      <DeleteIcon />
+    ) : status === "updated" ? (
+      <FactCheckIcon />
+    ) : (
+      <CheckCircleIcon />
+    );
+  };
 
   return (
     <>
@@ -25,12 +41,12 @@ function Dashboard({ vehicleData, updateData }) {
           <Alert
             variant="soft"
             color="success"
-            startDecorator={<DeleteIcon />}
+            startDecorator={getIcon(status)}
             endDecorator={
               <IconButton
-                variant="plain"
+                variant="soft"
                 size="sm"
-                color="neutral"
+                color="success"
                 onClick={() => setAlert(false)}
               >
                 <CloseRoundedIcon />
@@ -38,7 +54,7 @@ function Dashboard({ vehicleData, updateData }) {
             }
             sx="border-radius: 12px"
           >
-            Vehicle deleted successfully.
+            Vehicle {status} successfully.
           </Alert>
         </div>
       ) : (
@@ -46,9 +62,23 @@ function Dashboard({ vehicleData, updateData }) {
       )}
       <div className="dashboard-container">
         <div>
-          <Typography level="h1" variant="plain" sx={{ color: "primary.800" }}>
-            Dashboard
-          </Typography>
+          <div class="heading-container">
+            <Typography
+              level="h1"
+              variant="plain"
+              sx={{ color: "primary.800" }}
+            >
+              Dashboard
+            </Typography>
+            <IconButton
+              variant="soft"
+              size="sm"
+              color="neutral"
+              onClick={() => updateData()}
+            >
+              <RefreshIcon />
+            </IconButton>
+          </div>
           <Divider orientation="horizontal" />
         </div>
         <Vehicles vehicleData={vehicleData} updateData={updateData} />

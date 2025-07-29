@@ -21,16 +21,15 @@ function Vehicle({ vehicle, updateData }) {
 
   async function deleteVehicle() {
     const API = `https://68871b80071f195ca97f4670.mockapi.io/vehicles/${vehicle.id}`;
-    const response = await fetch(API, {
+    await fetch(API, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
-    const data = await response.json();
 
     updateData();
 
     setDeleteModal(false);
-    navigate(`/dashboard/deleted`);
+    navigate("/dashboard", { state: { status: "deleted" } });
   }
 
   return (
