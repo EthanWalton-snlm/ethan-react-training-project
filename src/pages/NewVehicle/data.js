@@ -13,6 +13,7 @@ const editableFields = [
   "postalCode",
   "country",
 ];
+
 const vehicleFields = makeFields([
   "imageLink",
   "year",
@@ -20,7 +21,9 @@ const vehicleFields = makeFields([
   "registrationNumber",
   "mileage",
 ]);
+
 const ownerFields = makeFields(["fullName", "idNumber"]);
+
 const addressFields = makeFields([
   "street",
   "city",
@@ -28,6 +31,7 @@ const addressFields = makeFields([
   "postalCode",
   "country",
 ]);
+
 const policyFields = makeFields(["excess", "paymentMethod"]);
 
 export {

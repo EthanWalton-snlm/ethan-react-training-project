@@ -1,26 +1,27 @@
 import { QuoteCard } from "../QuoteCard/QuoteCard";
 import "./styles.css";
 
-function QuoteDisplay({ vehicle }) {
+function QuoteDisplay({ premium }) {
+  // TODO: pass plan as prop
   return (
     <>
       <div className="quotes">
         <QuoteCard
           color={"#ff74023b"}
           name="bronze"
-          price={`R${vehicle?.premium}`}
+          price={`R${parseFloat(premium).toFixed(2)}`}
           content="blah"
         />
         <QuoteCard
           color={"#006eff69"}
           name="diamond"
-          price={`R${vehicle?.premium * 2}`}
+          price={`R${(premium * 2).toFixed(2)}`}
           content="blah"
         />
         <QuoteCard
           color={"#adadad3b"}
           name="silver"
-          price={`R${vehicle?.premium * 1.5}`}
+          price={`R${(premium * 1.5).toFixed(2)}`}
           content="blah"
         />
       </div>

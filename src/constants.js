@@ -91,6 +91,12 @@ const newVehicleTemplate = {
   status: "",
 };
 
+const PLAN_INFO = [
+  { name: "Bronze", adjustment: 1, content: ["This is the Bronze plan"] },
+  { name: "Silver", adjustment: 1.5, content: ["This is the Silver plan"] },
+  { name: "Diamond", adjustment: 2, content: ["This is the Diamond plan"] },
+];
+
 const VEHICLE_INFO = [
   {
     brand: "Seat",
@@ -1201,4 +1207,4 @@ function sentenceCase(key) {
     .replace(/^./, (str) => str.toUpperCase());
 }
 
-export { newVehicleTemplate, VEHICLE_INFO, sentenceCase };
+export { newVehicleTemplate, VEHICLE_INFO, PLAN_INFO, sentenceCase };

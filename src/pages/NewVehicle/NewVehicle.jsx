@@ -8,7 +8,7 @@ import DoneAllIcon from "@mui/icons-material/DoneAll";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { VehicleInput } from "../../components/VehicleInput/VehicleInput";
 import { QuoteDisplay } from "../../components/QuoteDisplay/QuoteDisplay";
-import { VEHICLE_INFO, newVehicleTemplate } from "../../constants";
+import { VEHICLE_INFO, newVehicleTemplate, PLAN_INFO } from "../../constants";
 import {
   editableFields,
   vehicleFields,
@@ -26,7 +26,9 @@ function NewVehicle({
   const [vehicleData, setVehicleData] = useState({ ...initialVehicleData });
   const [vehicleMake, setVehicleMake] = useState(initialVehicleData.make || "");
   const [insuredValue, setInsuredValue] = useState();
-  const [premium, setPremium] = useState();
+  const [basePremium, setBasePremium] = useState();
+  const [selectedPlan, setSelectedPlan] = useState(null);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -62,16 +64,29 @@ function NewVehicle({
     navigate("/dashboard", { state: { status: "updated" } });
   };
 
-  const setInsuranceValues = () => {
-    const value =
-      VEHICLE_INFO.find((car) => car.brand === vehicleMake)?.value ??
-      vehicleData.insuredValue;
+  const setInsuranceValues = (make = vehicleMake) => {
+    const insureValue = VEHICLE_INFO.find((car) => car.brand === make)?.value;
 
-    setInsuredValue(value);
-    setPremium((value / 150).toFixed(2));
+    handleChange("insuredValue", insureValue);
+    setInsuredValue(insureValue);
 
-    console.log(insuredValue, premium);
+    const base = insureValue / 150;
+
+    setBasePremium(base.toFixed(2));
   };
+
+  const handlePlanChange = (plan) => {
+    setSelectedPlan(plan);
+    handleChange("planType", plan.name);
+
+    const adjustedPremium = basePremium * plan.adjustment;
+
+    handleChange("premium", adjustedPremium.toFixed(2));
+  };
+
+  useEffect(() => {
+    console.log("Updated premium", vehicleData.premium);
+  }, [vehicleData.premium]);
 
   return (
     <div className="new-vehicle">
@@ -98,7 +113,7 @@ function NewVehicle({
             onChange={(_, value) => {
               setVehicleMake(value);
               handleChange("make", value);
-              setInsuranceValues();
+              setInsuranceValues(value);
             }}
             value={vehicleMake}
           />
@@ -161,7 +176,7 @@ function NewVehicle({
             key="premium"
             placeholder="Premium"
             disabled
-            value={premium}
+            value={basePremium}
           />
         </div>
       </div>
@@ -181,7 +196,16 @@ function NewVehicle({
             Plan Selection
           </Typography>
           <Divider />
-          <QuoteDisplay vehicle={{ ...vehicleData, insuredValue, premium }} />
+          <QuoteDisplay premium={basePremium} />
+          <Autocomplete
+            placeholder="Select a plan"
+            options={PLAN_INFO}
+            getOptionLabel={(option) => option.name}
+            disableClearable
+            onChange={(_, value) => handlePlanChange(value)}
+            value={selectedPlan}
+          />
+
           <Button
             variant="soft"
             startDecorator={<DoneAllIcon />}
