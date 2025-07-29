@@ -79,8 +79,6 @@ function NewVehicle({
   const navigate = useNavigate();
 
   async function handleSubmit() {
-    console.log(vehicleData);
-
     const API = "https://68871b80071f195ca97f4670.mockapi.io/vehicles";
     const response = await fetch(API, {
       method: "POST",
@@ -89,7 +87,7 @@ function NewVehicle({
     });
     const data = await response.json();
 
-    console.log(data);
+    console.log("Submitted");
 
     navigate(`/dashboard`);
 
@@ -105,7 +103,7 @@ function NewVehicle({
     });
     const data = await response.json();
 
-    console.log("Updated", data);
+    console.log("Updated");
 
     navigate(`/dashboard`);
 
@@ -143,7 +141,7 @@ function NewVehicle({
               setVehicleMake(value);
               vehicleData.make = value;
             }}
-            value={editMode ? vehicleData.make : ""}
+            defaultValue={editMode ? vehicleData.make : ""}
             color="primary"
             size="md"
             variant="outlined"
@@ -157,7 +155,7 @@ function NewVehicle({
             onChange={(event, value) => {
               vehicleData.model = value;
             }}
-            value={editMode ? vehicleData.model : null}
+            defaultValue={editMode ? vehicleData.model : ""}
             color="primary"
             size="md"
             variant="outlined"

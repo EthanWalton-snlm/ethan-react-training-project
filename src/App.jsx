@@ -30,8 +30,6 @@ function App() {
     });
     const data = await response.json();
 
-    console.log("Vehicle Data Retrieved");
-
     setVehicleData(data);
     setIsLoading(false);
   }
@@ -68,6 +66,15 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route
               path="/dashboard"
+              element={
+                <Dashboard
+                  vehicleData={vehicleData}
+                  updateData={getVehiclesData}
+                />
+              }
+            />
+            <Route
+              path="/dashboard/:status"
               element={
                 <Dashboard
                   vehicleData={vehicleData}

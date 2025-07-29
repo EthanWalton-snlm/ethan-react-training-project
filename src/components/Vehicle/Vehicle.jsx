@@ -13,7 +13,6 @@ import ModalClose from "@mui/joy/ModalClose";
 
 function Vehicle({ vehicle, updateData }) {
   const [deleteModal, setDeleteModal] = useState(false);
-  console.log(vehicle);
   const navigate = useNavigate();
 
   const editVehicleRedirect = (id) => {
@@ -28,12 +27,10 @@ function Vehicle({ vehicle, updateData }) {
     });
     const data = await response.json();
 
-    console.log("Deleted", data);
-
     updateData();
 
     setDeleteModal(false);
-    navigate(`/dashboard`);
+    navigate(`/dashboard/deleted`);
   }
 
   return (

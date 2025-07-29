@@ -6,3 +6,8 @@
   width: fit-content;
   justify-content: flex-start;
 }
+
+.alert {
+  padding: 1rem;
+  padding-bottom: 0;
+}
