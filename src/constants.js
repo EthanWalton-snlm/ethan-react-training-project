@@ -1154,4 +1154,10 @@ const VEHICLE_INFO = [
   },
 ];
 
-export { newVehicleTemplate, VEHICLE_INFO };
+function sentenceCase(key) {
+  return key
+    .replace(/([A-Z])/g, " $1")
+    .replace(/^./, (str) => str.toUpperCase());
+}
+
+export { newVehicleTemplate, VEHICLE_INFO, sentenceCase };

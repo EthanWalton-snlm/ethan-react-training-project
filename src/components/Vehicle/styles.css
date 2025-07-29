@@ -63,6 +63,25 @@
   overflow: hidden;
   display: flex;
   margin: 0 auto;
+  margin-bottom: 0.5rem;
+}
+
+.car-image-container-details {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  padding: 2rem;
+  border-radius: 12px;
+
+  img {
+    width: 70%;
+    object-fit: fill;
+    aspect-ratio: 16/9;
+    display: block;
+    border-radius: 12px;
+    padding: 1rem;
+  }
 }
 
 .car-image {
@@ -70,4 +89,23 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.clickable-card {
+  margin-top: 0.75rem;
+  cursor: pointer;
+}
+
+.edit-delete-modal-buttons {
+  justify-content: space-between;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.modal-table {
+  margin-top: 1rem;
+}
+
+.table-key {
+  font-weight: 800;
 }

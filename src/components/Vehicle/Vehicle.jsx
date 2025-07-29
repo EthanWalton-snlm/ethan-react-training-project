@@ -10,10 +10,16 @@ import { useState } from "react";
 import Modal from "@mui/joy/Modal";
 import ModalDialog from "@mui/joy/ModalDialog";
 import ModalClose from "@mui/joy/ModalClose";
+import Table from "@mui/joy/Table";
+import Sheet from "@mui/joy/Sheet";
+import { sentenceCase } from "../../constants";
+import Typography from "@mui/joy/Typography";
 
 function Vehicle({ vehicle, updateData }) {
   const [deleteModal, setDeleteModal] = useState(false);
+  const [detailsModal, setDetailsModal] = useState(false);
   const navigate = useNavigate();
+  const hiddenKeys = ["imageLink", "id"];
 
   const editVehicleRedirect = (id) => {
     navigate(`/vehicles/${id}/edit`);
@@ -43,34 +49,41 @@ function Vehicle({ vehicle, updateData }) {
         className="card"
       >
         <div className="inner-card">
-          <div className="car-image-container">
-            <img className="car-image" src={vehicle.imageLink} />
-          </div>
-          <div className="vehicle-info-container">
-            <div className="vehicle-specs">
-              <h3 className="vehicle-title">{`${vehicle.year} ${vehicle.make} ${vehicle.model}`}</h3>
-              <h4 className="vehicle-subheading">{`${vehicle.registrationNumber}`}</h4>
+          <div className="clickable-card" onClick={() => setDetailsModal(true)}>
+            <div className="car-image-container">
+              <img className="car-image" src={vehicle.imageLink} />
             </div>
-            <div className="plan-price">
-              <p className="plan-price-text">{`R${vehicle.premium} p/m`}</p>
+            <div className="vehicle-info-container">
+              <div className="vehicle-specs">
+                <h3 className="vehicle-title">{`${vehicle.year} ${vehicle.make} ${vehicle.model}`}</h3>
+                <h4 className="vehicle-subheading">{`${vehicle.registrationNumber}`}</h4>
+              </div>
+              <div className="plan-price">
+                <p className="plan-price-text">{`R${vehicle.premium} p/m`}</p>
+              </div>
             </div>
           </div>
           <Divider orientation="horizontal" />
-          <Button
-            variant="soft"
-            startDecorator={<ModeEditIcon />}
-            onClick={() => editVehicleRedirect(vehicle.registrationNumber)}
-          >
-            Edit
-          </Button>
-          <Button
-            variant="soft"
-            color="danger"
-            startDecorator={<DeleteIcon />}
-            onClick={() => setDeleteModal(true)}
-          >
-            Delete
-          </Button>
+
+          <div className="edit-delete-modal-buttons">
+            <Button
+              variant="soft"
+              startDecorator={<ModeEditIcon />}
+              onClick={() => editVehicleRedirect(vehicle.registrationNumber)}
+              sx="width: 100%"
+            >
+              Edit
+            </Button>
+            <Button
+              variant="soft"
+              color="danger"
+              startDecorator={<DeleteIcon />}
+              onClick={() => setDeleteModal(true)}
+              sx="width: 100%"
+            >
+              Delete
+            </Button>
+          </div>
         </div>
       </Card>
 
@@ -100,6 +113,58 @@ function Vehicle({ vehicle, updateData }) {
           >
             Permanently Delete
           </Button>
+        </ModalDialog>
+      </Modal>
+
+      <Modal open={detailsModal} onClose={() => setDetailsModal(false)}>
+        <ModalDialog>
+          <ModalClose />
+
+          <Typography level="h2" variant="plain">
+            {`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+          </Typography>
+          <Divider orientation="horizontal" />
+          <div className="car-image-container-details">
+            <img src={vehicle.imageLink} />
+          </div>
+
+          <Sheet sx="overflow: auto; height: 15rem;">
+            <Table variant="soft" className="modal-table">
+              <tbody>
+                {Object.keys(vehicle).map((key) =>
+                  !hiddenKeys.includes(key) ? (
+                    <tr key={key}>
+                      <td>
+                        <span className="table-key">{sentenceCase(key)}</span>
+                      </td>
+                      <td>{vehicle[key]}</td>
+                    </tr>
+                  ) : (
+                    <></>
+                  )
+                )}
+              </tbody>
+            </Table>
+          </Sheet>
+          <div className="edit-delete-modal-buttons">
+            <Button
+              variant="soft"
+              startDecorator={<ModeEditIcon />}
+              onClick={() => editVehicleRedirect(vehicle.registrationNumber)}
+              sx="width: 100%"
+            >
+              Edit
+            </Button>
+            <Button
+              variant="soft"
+              color="danger"
+              startDecorator={<DeleteIcon />}
+              onClick={() => setDeleteModal(true)}
+              sx="width: 100%"
+            >
+              Delete
+            </Button>
+          </div>
         </ModalDialog>
       </Modal>
     </>

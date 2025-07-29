@@ -7,9 +7,7 @@ import Typography from "@mui/joy/Typography";
 import Divider from "@mui/joy/Divider";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
-import { VEHICLE_INFO } from "../../constants";
-import Select from "@mui/joy/Select";
-import Option from "@mui/joy/Option";
+import { VEHICLE_INFO, sentenceCase } from "../../constants";
 import Autocomplete from "@mui/joy/Autocomplete";
 import { useState } from "react";
 
@@ -29,12 +27,6 @@ function NewVehicle({
     "postalCode",
     "country",
   ];
-
-  function sentenceCase(key) {
-    return key
-      .replace(/([A-Z])/g, " $1")
-      .replace(/^./, (str) => str.toUpperCase());
-  }
 
   const vehicleFieldKeys = [
     "imageLink",
