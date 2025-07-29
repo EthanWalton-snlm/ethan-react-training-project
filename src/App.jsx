@@ -13,10 +13,9 @@ import { PageNotFound } from "./pages/PageNotFound/PageNotFound";
 
 function App() {
   // TODO: notification instead of console logging everywhere
-  // TODO: loading screen
-  // TODO: add headers "application/json" in fetch calls
+  // TODO: make responsive
   // TODO: read mock api docs for filter/sort and for registration searching https://6402db84f61d96ac487212a6.mockapi.io/movies?search=of
-  // TODO: use dropdown search for filling in Make and Model etc and datepickers for date
+  // TODO: datepickers for date
   // TODO: view more modal popup on card click, show all data
 
   const [vehicleData, setVehicleData] = useState([]);

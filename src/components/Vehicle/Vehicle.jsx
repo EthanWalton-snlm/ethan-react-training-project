@@ -24,6 +24,7 @@ function Vehicle({ vehicle, updateData }) {
     const API = `https://68871b80071f195ca97f4670.mockapi.io/vehicles/${vehicle.id}`;
     const response = await fetch(API, {
       method: "DELETE",
+      headers: { "Content-Type": "application/json" },
     });
     const data = await response.json();
 

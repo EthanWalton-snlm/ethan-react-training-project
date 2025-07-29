@@ -7,12 +7,18 @@ import Typography from "@mui/joy/Typography";
 import Divider from "@mui/joy/Divider";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
+import { VEHICLE_INFO } from "../../constants";
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
+import Autocomplete from "@mui/joy/Autocomplete";
+import { useState } from "react";
 
 function NewVehicle({
   editMode = false,
   vehicleData = newVehicleTemplate,
   updateData,
 }) {
+  const [vehicleMake, setVehicleMake] = useState("");
   const editableFields = [
     "imageLink",
     "registrationNumber",
@@ -32,8 +38,6 @@ function NewVehicle({
 
   const vehicleFieldKeys = [
     "imageLink",
-    "make",
-    "model",
     "year",
     "color",
     "registrationNumber",
@@ -81,6 +85,7 @@ function NewVehicle({
     const response = await fetch(API, {
       method: "POST",
       body: JSON.stringify(vehicleData),
+      headers: { "Content-Type": "application/json" },
     });
     const data = await response.json();
 
@@ -96,6 +101,7 @@ function NewVehicle({
     const response = await fetch(API, {
       method: "PUT",
       body: JSON.stringify(vehicleData),
+      headers: { "Content-Type": "application/json" },
     });
     const data = await response.json();
 
@@ -129,6 +135,33 @@ function NewVehicle({
               value={vehicleData[key]}
             />
           ))}
+          <Autocomplete
+            placeholder="Select a make"
+            options={VEHICLE_INFO.map((car) => car.brand)}
+            disableClearable
+            onChange={(event, value) => {
+              setVehicleMake(value);
+              vehicleData.make = value;
+            }}
+            value={editMode ? vehicleData.make : ""}
+            color="primary"
+            size="md"
+            variant="outlined"
+          />
+          <Autocomplete
+            placeholder="Select a model"
+            options={VEHICLE_INFO.filter(
+              (car) => car.brand === vehicleMake
+            ).flatMap((make) => make.models)}
+            disableClearable
+            onChange={(event, value) => {
+              vehicleData.model = value;
+            }}
+            value={editMode ? vehicleData.model : null}
+            color="primary"
+            size="md"
+            variant="outlined"
+          />
         </div>
       </div>
 
