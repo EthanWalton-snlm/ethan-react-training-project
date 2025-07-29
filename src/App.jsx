@@ -13,7 +13,6 @@ import { PageNotFound } from "./pages/PageNotFound/PageNotFound";
 import { QuotePage } from "./pages/QuotePage/QuotePage";
 
 function App() {
-  // TODO: premium calculator
   // TODO: quotes page (drop down of all vehicles then view quotes in carasel, and new vehicle will redirect to this as next step?)
   // TODO: make responsive
   // TODO: read mock api docs for filter/sort and for registration searching https://6402db84f61d96ac487212a6.mockapi.io/movies?search=of
@@ -84,7 +83,10 @@ function App() {
               path="/vehicles/:id/edit"
               element={<EditVehicle vehicleData={vehicleData} />}
             />
-            <Route path="/quotes" element={<QuotePage />} />
+            <Route
+              path="/quotes"
+              element={<QuotePage vehicleData={vehicleData} />}
+            />
             <Route path="/quotes/:vehicleId" element={<VehicleQuotes />} />
             <Route path="/confirm" element={<ConfirmationPage />} />
             <Route path="/notfound" element={<PageNotFound />} />

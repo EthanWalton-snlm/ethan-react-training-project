@@ -1,29 +1,40 @@
-import { QuoteCard } from "../../components/QuoteCard/QuoteCard";
+import { QuoteDisplay } from "../../components/QuoteDisplay/QuoteDisplay";
+import Autocomplete from "@mui/joy/Autocomplete";
+import { useEffect, useState } from "react";
 import "./styles.css";
 
-function QuotePage() {
+function QuotePage({ vehicleData }) {
+  const [currentVehicle, setCurrentVehicle] = useState();
+
+  useEffect(() => {
+    console.log("!!!", currentVehicle?.id);
+  }, [currentVehicle]);
+
   return (
     <div className="quotes-container">
-      <div className="quotes">
-        <QuoteCard
-          color={"#ff74023b"}
-          name="bronze"
-          price="R100"
-          content="blah"
-        />
-        <QuoteCard
-          color={"#006eff69"}
-          name="bronze"
-          price="R100"
-          content="blah"
-        />
-        <QuoteCard
-          color={"#adadad3b"}
-          name="silver"
-          price="R100"
-          content="blah"
-        />
-      </div>
+      <Autocomplete
+        placeholder="Select a vehicle"
+        options={vehicleData.map((vehicle) => ({
+          label: `${vehicle.year} ${vehicle.make} ${vehicle.model} (${vehicle.registrationNumber})`,
+          key: vehicle.id,
+          ...vehicle,
+        }))}
+        disableClearable
+        onChange={(event, currVehicle) => {
+          setCurrentVehicle(currVehicle);
+        }}
+        color="primary"
+        size="md"
+        variant="outlined"
+      />
+
+      {currentVehicle ? (
+        <div className="quote-display">
+          <QuoteDisplay vehicle={currentVehicle} />
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

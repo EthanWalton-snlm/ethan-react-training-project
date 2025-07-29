@@ -7,8 +7,6 @@
   height: 100vh;
 }
 
-.quotes {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 2rem;
+.quote-display {
+  margin-top: 2rem;
 }
