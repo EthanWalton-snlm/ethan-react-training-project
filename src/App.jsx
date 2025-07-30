@@ -13,9 +13,8 @@ import { PageNotFound } from "./pages/PageNotFound/PageNotFound";
 import { QuotePage } from "./pages/QuotePage/QuotePage";
 
 function App() {
-  // TODO: fix quotes design and for edit submission
+  // TODO: change quotes design
   // TODO: formik
-  // TODO: add way to change plan (might be better to put it in /quotes rather than edit)
   // TODO: make responsive
   // TODO: handle search if result is null
   // TODO: datepickers for date
@@ -88,11 +87,21 @@ function App() {
             />
             <Route
               path="/vehicles/:id/edit"
-              element={<EditVehicle vehicleData={vehicleData} />}
+              element={
+                <EditVehicle
+                  vehicleData={vehicleData}
+                  updateData={getVehiclesData}
+                />
+              }
             />
             <Route
               path="/quotes"
-              element={<QuotePage vehicleData={vehicleData} />}
+              element={
+                <QuotePage
+                  vehicleData={vehicleData}
+                  updateData={getVehiclesData}
+                />
+              }
             />
             <Route path="/quotes/:vehicleId" element={<VehicleQuotes />} />
             <Route path="/confirm" element={<ConfirmationPage />} />

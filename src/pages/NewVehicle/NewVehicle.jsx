@@ -1,14 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/joy/Button";
-import Typography from "@mui/joy/Typography";
-import Divider from "@mui/joy/Divider";
-import Autocomplete from "@mui/joy/Autocomplete";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { VehicleInput } from "../../components/VehicleInput/VehicleInput";
-import { QuoteDisplay } from "../../components/QuoteDisplay/QuoteDisplay";
-import { VEHICLE_INFO, newVehicleTemplate, PLAN_INFO } from "../../constants";
+import { VEHICLE_INFO, newVehicleTemplate } from "../../constants";
 import {
   editableFields,
   vehicleFields,
@@ -16,6 +12,14 @@ import {
   addressFields,
   policyFields,
 } from "./data.js";
+import { NewVehicleSection } from "../../components/NewVehicleSection/NewVehicleSection";
+import { NewVehicleMakeModel } from "../../components/NewVehicleMakeModel/NewVehicleMakeModel";
+import { NewVehicleInputs } from "../../components/NewVehicleInputs/NewVehicleInputs";
+import { NewVehiclePlan } from "../../components/NewVehiclePlan/NewVehiclePlan";
+import {
+  calculateBasePremium,
+  calculateAdjustedPremium,
+} from "../../utils/quotes.js";
 import "./styles.css";
 
 function NewVehicle({
@@ -70,18 +74,21 @@ function NewVehicle({
     handleChange("insuredValue", insureValue);
     setInsuredValue(insureValue);
 
-    const base = insureValue / 150;
+    const base = calculateBasePremium(insureValue);
 
-    setBasePremium(base.toFixed(2));
+    setBasePremium(base);
   };
 
   const handlePlanChange = (plan) => {
     setSelectedPlan(plan);
     handleChange("planType", plan.name);
 
-    const adjustedPremium = basePremium * plan.adjustment;
+    const adjustedPremium = calculateAdjustedPremium(
+      basePremium,
+      plan.adjustment
+    );
 
-    handleChange("premium", adjustedPremium.toFixed(2));
+    handleChange("premium", adjustedPremium);
   };
 
   useEffect(() => {
@@ -90,96 +97,41 @@ function NewVehicle({
 
   return (
     <div className="new-vehicle">
-      <div className="form-section-container">
-        <Typography level="h2" variant="plain" sx={{ color: "primary.800" }}>
-          Vehicle Information
-        </Typography>
-        <Divider />
-        <div className="form-section">
-          {vehicleFields.map(({ key, placeholder }) => (
-            <VehicleInput
-              key={key}
-              onChange={(e) => handleChange(key, e.target.value)}
-              placeholder={placeholder}
-              disabled={disableField(key)}
-              value={vehicleData[key]}
-            />
-          ))}
+      <NewVehicleSection title="Vehicle Information">
+        <NewVehicleInputs
+          fields={vehicleFields}
+          {...{ vehicleData, handleChange, disableField }}
+        />
+        <NewVehicleMakeModel
+          {...{
+            vehicleMake,
+            setVehicleMake,
+            handleChange,
+            setInsuranceValues,
+            vehicleData,
+          }}
+        />
+      </NewVehicleSection>
 
-          <Autocomplete
-            placeholder="Select a make"
-            options={VEHICLE_INFO.map((car) => car.brand)}
-            disableClearable
-            onChange={(_, value) => {
-              setVehicleMake(value);
-              handleChange("make", value);
-              setInsuranceValues(value);
-            }}
-            value={vehicleMake}
-          />
+      <NewVehicleSection title="Owner Information">
+        <NewVehicleInputs
+          fields={[...ownerFields, ...addressFields]}
+          {...{ vehicleData, handleChange, disableField }}
+        />
+      </NewVehicleSection>
 
-          <Autocomplete
-            placeholder="Select a model"
-            options={
-              VEHICLE_INFO.find((car) => car.brand === vehicleMake)?.models ||
-              []
-            }
-            disableClearable
-            onChange={(_, value) => handleChange("model", value)}
-            value={vehicleData.model || ""}
-          />
-        </div>
-      </div>
-
-      <div className="form-section-container">
-        <Typography level="h2" variant="plain" sx={{ color: "primary.800" }}>
-          Owner Information
-        </Typography>
-        <Divider />
-        <div className="form-section">
-          {[...ownerFields, ...addressFields].map(({ key, placeholder }) => (
-            <VehicleInput
-              key={key}
-              onChange={(e) => handleChange(key, e.target.value)}
-              placeholder={placeholder}
-              disabled={disableField(key)}
-              value={vehicleData[key]}
-            />
-          ))}
-        </div>
-      </div>
-
-      <div className="form-section-container">
-        <Typography level="h2" variant="plain" sx={{ color: "primary.800" }}>
-          Policy Information
-        </Typography>
-        <Divider />
-        <div className="form-section">
-          {policyFields.map(({ key, placeholder }) => (
-            <VehicleInput
-              key={key}
-              onChange={(e) => handleChange(key, e.target.value)}
-              placeholder={placeholder}
-              disabled={disableField(key)}
-              value={vehicleData[key]}
-            />
-          ))}
-
-          <VehicleInput
-            key="insuredValue"
-            placeholder="Insured Value"
-            disabled
-            value={insuredValue}
-          />
-
-          <VehicleInput
-            key="premium"
-            placeholder="Premium"
-            disabled
-            value={basePremium}
-          />
-        </div>
-      </div>
+      <NewVehicleSection title="Policy Information">
+        <NewVehicleInputs
+          fields={policyFields}
+          {...{ vehicleData, handleChange, disableField }}
+        />
+        <VehicleInput
+          key="insuredValue"
+          placeholder="Insured Value"
+          disabled
+          value={insuredValue}
+        />
+      </NewVehicleSection>
 
       {editMode ? (
         <Button
@@ -192,20 +144,9 @@ function NewVehicle({
         </Button>
       ) : (
         <>
-          <Typography level="h2" variant="plain" sx={{ color: "primary.800" }}>
-            Plan Selection
-          </Typography>
-          <Divider />
-          <QuoteDisplay premium={basePremium} />
-          <Autocomplete
-            placeholder="Select a plan"
-            options={PLAN_INFO}
-            getOptionLabel={(option) => option.name}
-            disableClearable
-            onChange={(_, value) => handlePlanChange(value)}
-            value={selectedPlan}
+          <NewVehiclePlan
+            {...{ basePremium, selectedPlan, handlePlanChange }}
           />
-
           <Button
             variant="soft"
             startDecorator={<DoneAllIcon />}
