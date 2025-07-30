@@ -11,9 +11,16 @@
   width: 100%;
   padding: 0.2rem 0.5rem !important;
   font-weight: 50 !important;
+  color: rgb(255, 255, 255);
 }
 
 .header-list {
   margin: 0 auto;
   gap: 0;
+}
+
+.switcher {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem 0 0 1rem;
 }

@@ -11,20 +11,44 @@ import { ConfirmationPage } from "./pages/ConfirmationPage/ConfirmationPage";
 import { VehicleQuotes } from "./pages/VehicleQuotes/VehicleQuotes";
 import { PageNotFound } from "./pages/PageNotFound/PageNotFound";
 import { QuotePage } from "./pages/QuotePage/QuotePage";
+import { CssVarsProvider, useColorScheme, extendTheme } from "@mui/joy/styles";
+import React from "react";
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
+import Switch from "@mui/joy/Switch";
+
+const theme = extendTheme();
+
+function ModeSwitcher() {
+  const { mode, setMode } = useColorScheme();
+  const [checked, setChecked] = useState(mode === "dark");
+
+  useEffect(() => {
+    setChecked(mode === "dark");
+  }, [mode]);
+
+  const changeMode = (event) => {
+    const isChecked = event.target.checked;
+    setChecked(isChecked);
+    setMode(isChecked ? "dark" : "light");
+  };
+
+  return <Switch checked={checked} onChange={changeMode} />;
+}
 
 function App() {
   // TODO: view summary after new vehicle, edit vehicle, change quote (can reuse whats inside details modal on dash)
   // TODO: filter on dashboard
-
   // TODO: formik
   // TODO: make responsive
+
   // TODO: handle search if result is null
   // TODO: datepickers for date
   // TODO: separate components
+  // TODO: change quotes cards styling
 
   // Extra:
   // TODO: dark mode
-  // TODO: change quotes design
   // TODO: stats graph
 
   const [vehicleData, setVehicleData] = useState([]);
@@ -57,71 +81,69 @@ function App() {
   }, [setVehicleData]);
 
   return (
-    <div className="app-layout">
-      <div className="navigation">
-        {/* <Header
-          dashboard={<Link to="/dashboard">Dashboard</Link>}
-          vehicles={<Link to="/vehicles/new">New Vehicle</Link>}
-          quotes={<Link to="/quotes">Quotes</Link>}
-        /> */}
-        <Header
-          options={[
-            { label: "Dashboard", link: "/dashboard" },
-            { label: "New Vehicle", link: "/vehicles/new" },
-            { label: "Quotes", link: "/quotes" },
-          ]}
-        />
-      </div>
-      {isLoading ? (
-        <LoadingScreen />
-      ) : (
-        <div>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route
-              path="/dashboard"
-              element={
-                <Dashboard
-                  vehicleData={vehicleData}
-                  updateData={getVehiclesData}
-                />
-              }
-            />
-            <Route
-              path="/vehicles/new"
-              element={<NewVehicle updateData={getVehiclesData} />}
-            />
-            <Route
-              path="/vehicles/:id/edit"
-              element={
-                <EditVehicle
-                  vehicleData={vehicleData}
-                  updateData={getVehiclesData}
-                />
-              }
-            />
-            <Route
-              path="/quotes"
-              element={
-                <QuotePage
-                  vehicleData={vehicleData}
-                  updateData={getVehiclesData}
-                />
-              }
-            />
-            <Route path="/quotes/:vehicleId" element={<VehicleQuotes />} />
-            <Route path="/confirm" element={<ConfirmationPage />} />
-            <Route path="/notfound" element={<PageNotFound />} />
-
-            <Route
-              path="/vehicles"
-              element={<Navigate to="/dashboard" replace />}
-            />
-            <Route path="*" element={<Navigate to="/notfound" replace />} />
-          </Routes>
+    <CssVarsProvider theme={theme} modeStorageKey="mode-toggle-demo">
+      <div className="app-layout">
+        <div className="navigation">
+          <Header
+            options={[
+              { label: "Dashboard", link: "/dashboard" },
+              { label: "New Vehicle", link: "/vehicles/new" },
+              { label: "Quotes", link: "/quotes" },
+            ]}
+            modeSwitcher={<ModeSwitcher />}
+          />
         </div>
-      )}
-    </div>
+        {isLoading ? (
+          <LoadingScreen />
+        ) : (
+          <div>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <Dashboard
+                    vehicleData={vehicleData}
+                    updateData={getVehiclesData}
+                  />
+                }
+              />
+              <Route
+                path="/vehicles/new"
+                element={<NewVehicle updateData={getVehiclesData} />}
+              />
+              <Route
+                path="/vehicles/:id/edit"
+                element={
+                  <EditVehicle
+                    vehicleData={vehicleData}
+                    updateData={getVehiclesData}
+                  />
+                }
+              />
+              <Route
+                path="/quotes"
+                element={
+                  <QuotePage
+                    vehicleData={vehicleData}
+                    updateData={getVehiclesData}
+                  />
+                }
+              />
+              <Route path="/quotes/:vehicleId" element={<VehicleQuotes />} />
+              <Route path="/confirm" element={<ConfirmationPage />} />
+              <Route path="/notfound" element={<PageNotFound />} />
+
+              <Route
+                path="/vehicles"
+                element={<Navigate to="/dashboard" replace />}
+              />
+              <Route path="*" element={<Navigate to="/notfound" replace />} />
+            </Routes>
+          </div>
+        )}
+      </div>
+    </CssVarsProvider>
   );
 }
 

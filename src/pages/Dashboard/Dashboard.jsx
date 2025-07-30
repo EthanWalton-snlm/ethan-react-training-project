@@ -14,10 +14,12 @@ import FactCheckIcon from "@mui/icons-material/FactCheck";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import Input from "@mui/joy/Input";
 import SearchIcon from "@mui/icons-material/Search";
+import { useColorScheme } from "@mui/joy/styles";
 
 function Dashboard({ vehicleData, updateData }) {
   const location = useLocation();
   const status = location.state?.status;
+  const { mode } = useColorScheme();
   const [alert, setAlert] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -74,7 +76,7 @@ function Dashboard({ vehicleData, updateData }) {
             <Typography
               level="h1"
               variant="plain"
-              sx={{ color: "primary.800" }}
+              sx={{ color: mode === "dark" ? "neutral.0" : "neutral.900" }}
             >
               Dashboard
             </Typography>

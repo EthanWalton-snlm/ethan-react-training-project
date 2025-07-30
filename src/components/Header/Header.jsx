@@ -9,11 +9,14 @@ import ListItemButton from "@mui/joy/ListItemButton";
 import "./styles.css";
 import { Link } from "react-router-dom";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import { useColorScheme } from "@mui/joy/styles";
 
-function Header({ options }) {
+function Header({ options, modeSwitcher }) {
+  const { mode } = useColorScheme();
+
   return (
     <div className="header">
-      <h1>Logo</h1>
+      <div className="switcher">{modeSwitcher}</div>
       <Box sx={{ display: "flex", width: "100%" }}>
         <Box role="presentation" sx={{ width: "100%" }}>
           <List sx={{ width: "100%" }} className="header-list">
@@ -23,6 +26,7 @@ function Header({ options }) {
                   component={Link}
                   to={option.link}
                   className="header-button"
+                  color={mode === "dark" ? "#0c1a27" : "#096bde"}
                 >
                   <div className="inner-button">
                     <div>{option.label}</div>
