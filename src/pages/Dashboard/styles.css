@@ -18,3 +18,9 @@
   gap: 1em;
   align-items: center;
 }
+
+.filter-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}

@@ -35,13 +35,11 @@ function ModeSwitcher() {
 
 function App() {
   // TODO: fix quotes
-  // TODO: filter on dashboard
   // TODO: make responsive
 
   // TODO: fix show details modal img styling
-  // TODO: datepickers for date
-  // TODO: separate components
   // TODO: change quotes cards styling
+  // TODO: separate components (aka refactor where possible)
 
   // Extra:
   // TODO: stats graph
@@ -49,12 +47,20 @@ function App() {
   const [vehicleData, setVehicleData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  async function getVehiclesData(searchTerm = "") {
+  async function getVehiclesData(searchTerm = "", filters = {}) {
     setIsLoading(true);
     const url = new URL("https://68871b80071f195ca97f4670.mockapi.io/vehicles");
 
     if (searchTerm) {
       url.searchParams.append("search", searchTerm);
+    }
+
+    if (filters) {
+      Object.entries(filters).forEach(([key, value]) => {
+        if (value) {
+          url.searchParams.append(key, value);
+        }
+      });
     }
 
     const response = await fetch(url, {

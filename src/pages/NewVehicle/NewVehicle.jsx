@@ -206,6 +206,7 @@ function NewVehicle({
             error={touched.mileage && errors.mileage}
             helperText={touched.mileage ? errors.mileage : ""}
           />
+
           <Autocomplete
             placeholder="Select a make"
             options={VEHICLE_INFO.map((car) => car.brand)}
@@ -220,20 +221,24 @@ function NewVehicle({
             color="primary"
           />
 
-          <Autocomplete
-            placeholder="Select a model"
-            options={
-              VEHICLE_INFO.find((car) => car.brand === values.make)?.models ||
-              []
-            }
-            disableClearable
-            value={values.model}
-            onChange={(_, value) => {
-              setFieldValue("model", value);
-            }}
-            onBlur={() => formik.setFieldTouched("model", true)}
-            color="primary"
-          />
+          {vehicleMake ? (
+            <Autocomplete
+              placeholder="Select a model"
+              options={
+                VEHICLE_INFO.find((car) => car.brand === values.make)?.models ||
+                []
+              }
+              disableClearable
+              value={values.model}
+              onChange={(_, value) => {
+                setFieldValue("model", value);
+              }}
+              onBlur={() => formik.setFieldTouched("model", true)}
+              color="primary"
+            />
+          ) : (
+            <></>
+          )}
         </NewVehicleSection>
 
         <NewVehicleSection title="Owner Information">

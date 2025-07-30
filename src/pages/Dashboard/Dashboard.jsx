@@ -14,6 +14,12 @@ import FactCheckIcon from "@mui/icons-material/FactCheck";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import Input from "@mui/joy/Input";
 import SearchIcon from "@mui/icons-material/Search";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import CloseIcon from "@mui/icons-material/Close";
+import Modal from "@mui/joy/Modal";
+import ModalDialog from "@mui/joy/ModalDialog";
+import Autocomplete from "@mui/joy/Autocomplete";
+import { VEHICLE_INFO } from "../../constants";
 import { useColorScheme } from "@mui/joy/styles";
 
 function Dashboard({ vehicleData, updateData }) {
@@ -22,6 +28,12 @@ function Dashboard({ vehicleData, updateData }) {
   const { mode } = useColorScheme();
   const [alert, setAlert] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const [filterColor, setFilterColor] = useState("");
+  const [filterPlanType, setFilterPlanType] = useState("");
+  const [filterMake, setFilterMake] = useState("");
+  const [filterModel, setFilterModel] = useState("");
+  const [filterModal, setFilterModal] = useState(false);
 
   useEffect(() => {
     ["created", "updated", "deleted"].includes(status)
@@ -42,6 +54,20 @@ function Dashboard({ vehicleData, updateData }) {
   const searchVehicles = (event) => {
     event.preventDefault();
     updateData(searchTerm);
+  };
+
+  const filterVehicles = (event) => {
+    event.preventDefault();
+
+    const filters = {
+      color: filterColor,
+      planType: filterPlanType,
+      make: filterMake,
+      model: filterModel,
+    };
+
+    updateData("", filters);
+    setFilterModal(false);
   };
 
   return (
@@ -84,6 +110,14 @@ function Dashboard({ vehicleData, updateData }) {
               variant="soft"
               size="sm"
               color="neutral"
+              onClick={() => setFilterModal(true)}
+            >
+              <FilterAltIcon />
+            </IconButton>
+            <IconButton
+              variant="soft"
+              size="sm"
+              color="neutral"
               onClick={() => updateData()}
             >
               <RefreshIcon />
@@ -102,6 +136,88 @@ function Dashboard({ vehicleData, updateData }) {
         </div>
         <Vehicles vehicleData={vehicleData} updateData={updateData} />
       </div>
+
+      <Modal open={filterModal}>
+        <ModalDialog>
+          <Typography
+            level="h2"
+            variant="plain"
+            sx={{ color: mode === "dark" ? "neutral.0" : "neutral.900" }}
+          >
+            Filter Vehicles
+          </Typography>
+          <Autocomplete
+            placeholder="Select a make"
+            options={VEHICLE_INFO.map((car) => car.brand)}
+            value={filterMake}
+            onChange={(_, value) => setFilterMake(value)}
+            color="primary"
+          />
+
+          {filterMake ? (
+            <Autocomplete
+              placeholder="Select a model"
+              options={
+                VEHICLE_INFO.find((car) => car.brand === filterMake)?.models ||
+                []
+              }
+              value={filterModel}
+              onChange={(_, value) => setFilterModel(value)}
+              color="primary"
+            />
+          ) : (
+            <></>
+          )}
+
+          <Autocomplete
+            placeholder="Select a plan type"
+            options={["Bronze", "Silver", "Diamond"]}
+            value={filterPlanType}
+            onChange={(_, value) => setFilterPlanType(value)}
+            color="primary"
+          />
+
+          <Autocomplete
+            placeholder="Select a color"
+            options={[
+              "Red",
+              "Black",
+              "Blue",
+              "Green",
+              "Purple",
+              "Yellow",
+              "Orange",
+              "White",
+              "Silver",
+              "Pink",
+            ]}
+            value={filterColor}
+            onChange={(_, value) => setFilterColor(value)}
+            color="primary"
+          />
+
+          <div className="filter-buttons">
+            <Button
+              variant="soft"
+              color="primary"
+              startDecorator={<FilterAltIcon />}
+              onClick={filterVehicles}
+              sx="width: 50%"
+            >
+              Filter
+            </Button>
+            <Button
+              variant="outlined"
+              color="primary"
+              startDecorator={<CloseIcon />}
+              onClick={() => setFilterModal(false)}
+              sx="width: 50%"
+            >
+              Cancel
+            </Button>
+          </div>
+        </ModalDialog>
+      </Modal>
     </>
   );
 }

@@ -3,7 +3,6 @@ import { Vehicle } from "../../components/Vehicle/Vehicle";
 import Typography from "@mui/joy/Typography";
 
 function Vehicles({ vehicleData, updateData }) {
-  console.log("!!!", vehicleData);
   return (
     <div className="outer-vehicles-container">
       <div className="vehicles-container">
