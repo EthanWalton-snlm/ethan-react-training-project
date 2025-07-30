@@ -1,0 +1,56 @@
+.confirmation-page {
+  padding: 2rem;
+}
+
+.car-image-container {
+  width: 90%;
+  height: 14em;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  margin: 0 auto;
+  margin-bottom: 0.5rem;
+}
+
+.car-image-container-details {
+  overflow: hidden;
+  display: flex;
+  justify-content: start;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  padding: 2rem;
+  border-radius: 12px;
+
+  img {
+    width: 25%;
+    object-fit: contain;
+    aspect-ratio: 16/9;
+    display: block;
+    border-radius: 12px;
+    padding: 1rem;
+  }
+}
+
+.clickable-card {
+  margin-top: 0.75rem;
+  cursor: pointer;
+}
+
+.edit-delete-modal-buttons {
+  justify-content: space-between;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.modal-table {
+  margin: 2rem 0;
+}
+
+.table-key {
+  font-weight: 800;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}

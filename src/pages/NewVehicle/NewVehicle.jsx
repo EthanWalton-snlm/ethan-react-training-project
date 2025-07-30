@@ -90,7 +90,9 @@ function NewVehicle({
       headers: { "Content-Type": "application/json" },
     });
     updateData();
-    navigate("/dashboard", { state: { status: "created" } });
+    navigate(`/confirm/${vehicleData.registrationNumber}`, {
+      state: { status: "created" },
+    });
   };
 
   const handleEditSubmit = async () => {
@@ -103,7 +105,9 @@ function NewVehicle({
       }
     );
     updateData();
-    navigate("/dashboard", { state: { status: "updated" } });
+    navigate(`/confirm/${vehicleData.registrationNumber}`, {
+      state: { status: "updated" },
+    });
   };
 
   const setInsuranceValues = (make = vehicleMake) => {

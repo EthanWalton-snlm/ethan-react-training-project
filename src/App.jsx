@@ -1,7 +1,7 @@
 import "./App.css";
 import { Home } from "./pages/Home/Home";
 import { Header } from "./components/Header/Header";
-import { Routes, Route, Link, Navigate } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
 import { useState, useEffect } from "react";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { LoadingScreen } from "./pages/LoadingScreen/LoadingScreen";
@@ -12,9 +12,6 @@ import { VehicleQuotes } from "./pages/VehicleQuotes/VehicleQuotes";
 import { PageNotFound } from "./pages/PageNotFound/PageNotFound";
 import { QuotePage } from "./pages/QuotePage/QuotePage";
 import { CssVarsProvider, useColorScheme, extendTheme } from "@mui/joy/styles";
-import React from "react";
-import Select from "@mui/joy/Select";
-import Option from "@mui/joy/Option";
 import Switch from "@mui/joy/Switch";
 
 const theme = extendTheme();
@@ -37,7 +34,6 @@ function ModeSwitcher() {
 }
 
 function App() {
-  // TODO: view summary after new vehicle, edit vehicle, change quote (can reuse whats inside details modal on dash)
   // TODO: filter on dashboard
   // TODO: formik
   // TODO: make responsive
@@ -48,7 +44,6 @@ function App() {
   // TODO: change quotes cards styling
 
   // Extra:
-  // TODO: dark mode
   // TODO: stats graph
 
   const [vehicleData, setVehicleData] = useState([]);
@@ -131,7 +126,10 @@ function App() {
                 }
               />
               <Route path="/quotes/:vehicleId" element={<VehicleQuotes />} />
-              <Route path="/confirm" element={<ConfirmationPage />} />
+              <Route
+                path="/confirm/:registrationNumber"
+                element={<ConfirmationPage vehicleData={vehicleData} />}
+              />
               <Route path="/notfound" element={<PageNotFound />} />
 
               <Route

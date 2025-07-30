@@ -11,7 +11,7 @@ import ModalDialog from "@mui/joy/ModalDialog";
 import ModalClose from "@mui/joy/ModalClose";
 import Table from "@mui/joy/Table";
 import Sheet from "@mui/joy/Sheet";
-import { sentenceCase } from "../../constants";
+import { sentenceCase } from "../../utils/sentenceCase";
 import Typography from "@mui/joy/Typography";
 
 function Vehicle({ vehicle, updateData }) {

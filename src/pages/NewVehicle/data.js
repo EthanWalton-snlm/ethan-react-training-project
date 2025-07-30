@@ -1,4 +1,4 @@
-import { sentenceCase } from "../../constants";
+import { sentenceCase } from "../../utils/sentenceCase";
 
 const makeFields = (keys) =>
   keys.map((key) => ({ key, placeholder: sentenceCase(key) }));
