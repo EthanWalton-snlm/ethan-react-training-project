@@ -1,11 +1,16 @@
+import { useColorScheme } from "@mui/joy/styles";
 import Autocomplete from "@mui/joy/Autocomplete";
 import Typography from "@mui/joy/Typography";
 import Divider from "@mui/joy/Divider";
 import { PLAN_INFO } from "../../constants";
 import { QuoteDisplay } from "../QuoteDisplay/QuoteDisplay";
-import { useColorScheme } from "@mui/joy/styles";
 
-function NewVehiclePlan({ basePremium, selectedPlan, handlePlanChange }) {
+function NewVehiclePlan({
+  basePremium,
+  selectedPlan,
+  handlePlanChange,
+  formik,
+}) {
   const { mode } = useColorScheme();
 
   return (
@@ -24,8 +29,20 @@ function NewVehiclePlan({ basePremium, selectedPlan, handlePlanChange }) {
         options={PLAN_INFO}
         getOptionLabel={(option) => option.name}
         disableClearable
-        onChange={(_, value) => handlePlanChange(value)}
+        onChange={(_, value) => {
+          formik.setFieldTouched("planType", true);
+          handlePlanChange(value);
+        }}
         value={selectedPlan}
+        slotProps={{
+          input: {
+            name: "planType",
+            onBlur: formik.handleBlur,
+          },
+        }}
+        color="primary"
+        error={formik.touched.planType && !!formik.errors.planType}
+        helperText={formik.touched.planType ? formik.errors.planType : ""}
       />
     </>
   );

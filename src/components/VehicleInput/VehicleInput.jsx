@@ -1,18 +1,29 @@
 import Input from "@mui/joy/Input";
 
-function VehicleInput({ onChange, placeholder, disabled, value = "" }) {
+function VehicleInput({
+  label,
+  onChange,
+  onBlur,
+  disabled = false,
+  value,
+  error,
+  helperText,
+  name,
+}) {
   return (
-    <>
-      <Input
-        color="primary"
-        placeholder={placeholder}
-        size="md"
-        variant="outlined"
-        onChange={onChange}
-        disabled={disabled}
-        defaultValue={value}
-      />
-    </>
+    <Input
+      color="primary"
+      placeholder={label}
+      size="md"
+      variant="outlined"
+      onChange={onChange}
+      onBlur={onBlur}
+      disabled={disabled}
+      value={value}
+      name={name}
+      error={error}
+      helperText={helperText}
+    />
   );
 }
 

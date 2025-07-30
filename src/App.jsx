@@ -34,10 +34,11 @@ function ModeSwitcher() {
 }
 
 function App() {
+  // TODO: fix quotes
   // TODO: filter on dashboard
-  // TODO: formik
   // TODO: make responsive
 
+  // TODO: fix show details modal img styling
   // TODO: handle search if result is null
   // TODO: datepickers for date
   // TODO: separate components
