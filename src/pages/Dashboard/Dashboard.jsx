@@ -102,10 +102,23 @@ function Dashboard({ vehicleData, updateData }) {
             <Typography
               level="h1"
               variant="plain"
-              sx={{ color: mode === "dark" ? "neutral.0" : "neutral.900" }}
+              sx={{
+                color: mode === "dark" ? "neutral.0" : "neutral.900",
+                margin: "0 0 1rem 0",
+              }}
             >
               Dashboard
             </Typography>
+          </div>
+          <Divider orientation="horizontal" />
+          <form onSubmit={searchVehicles} className="search-form-container">
+            <Input
+              onChange={(event) => setSearchTerm(event.target.value)}
+              label="Search"
+              variant="outlined"
+              fullWidth
+              startDecorator={<SearchIcon />}
+            />
             <IconButton
               variant="soft"
               size="sm"
@@ -122,15 +135,6 @@ function Dashboard({ vehicleData, updateData }) {
             >
               <RefreshIcon />
             </IconButton>
-          </div>
-          <form onSubmit={searchVehicles} className="search-form-container">
-            <Input
-              onChange={(event) => setSearchTerm(event.target.value)}
-              label="Search"
-              variant="outlined"
-              fullWidth
-              startDecorator={<SearchIcon />}
-            />
           </form>
           <Divider orientation="horizontal" />
         </div>
