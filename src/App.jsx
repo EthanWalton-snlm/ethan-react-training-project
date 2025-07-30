@@ -34,15 +34,14 @@ function ModeSwitcher() {
 }
 
 function App() {
-  // TODO: fix quotes
   // TODO: make responsive
 
-  // TODO: fix show details modal img styling
   // TODO: change quotes cards styling
-  // TODO: separate components (aka refactor where possible)
+  // TODO: fix show details modal img styling
 
-  // Extra:
-  // TODO: stats graph
+  // TODO (extra): stats graph
+
+  // TODO: separate components (aka refactor where possible)
 
   const [vehicleData, setVehicleData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

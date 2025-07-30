@@ -9,7 +9,7 @@ function NewVehiclePlan({
   basePremium,
   selectedPlan,
   handlePlanChange,
-  formik,
+  formik = null,
 }) {
   const { mode } = useColorScheme();
 
@@ -24,26 +24,40 @@ function NewVehiclePlan({
       </Typography>
       <Divider />
       <QuoteDisplay premium={basePremium} />
-      <Autocomplete
-        placeholder="Select a plan"
-        options={PLAN_INFO}
-        getOptionLabel={(option) => option.name}
-        disableClearable
-        onChange={(_, value) => {
-          formik.setFieldTouched("planType", true);
-          handlePlanChange(value);
-        }}
-        value={selectedPlan}
-        slotProps={{
-          input: {
-            name: "planType",
-            onBlur: formik.handleBlur,
-          },
-        }}
-        color="primary"
-        error={formik.touched.planType && !!formik.errors.planType}
-        helperText={formik.touched.planType ? formik.errors.planType : ""}
-      />
+      {!formik ? (
+        <Autocomplete
+          placeholder="Select a plan"
+          options={PLAN_INFO}
+          getOptionLabel={(option) => option.name}
+          disableClearable
+          onChange={(_, value) => {
+            handlePlanChange(value);
+          }}
+          value={selectedPlan}
+          color="primary"
+        />
+      ) : (
+        <Autocomplete
+          placeholder="Select a plan"
+          options={PLAN_INFO}
+          getOptionLabel={(option) => option.name}
+          disableClearable
+          onChange={(_, value) => {
+            formik.setFieldTouched("planType", true);
+            handlePlanChange(value);
+          }}
+          value={selectedPlan}
+          slotProps={{
+            input: {
+              name: "planType",
+              onBlur: formik.handleBlur,
+            },
+          }}
+          color="primary"
+          error={formik.touched.planType && !!formik.errors.planType}
+          helperText={formik.touched.planType ? formik.errors.planType : ""}
+        />
+      )}
     </>
   );
 }

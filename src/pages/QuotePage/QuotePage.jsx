@@ -1,6 +1,6 @@
 import { NewVehiclePlan } from "../../components/NewVehiclePlan/NewVehiclePlan";
 import Autocomplete from "@mui/joy/Autocomplete";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   calculateBasePremium,
   calculateAdjustedPremium,
@@ -15,10 +15,6 @@ function QuotePage({ vehicleData, updateData }) {
   const [planType, setPlanType] = useState(vehicleData.planType);
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    console.log("!!!", currentVehicle?.id);
-  }, [currentVehicle]);
 
   const handleChange = (key, value) => {
     setCurrentVehicle((prev) => ({ ...prev, [key]: value }));
@@ -62,7 +58,7 @@ function QuotePage({ vehicleData, updateData }) {
           ...vehicle,
         }))}
         disableClearable
-        onChange={(event, currVehicle) => {
+        onChange={(_, currVehicle) => {
           setCurrentVehicle(currVehicle);
         }}
         color="primary"
