@@ -39,7 +39,6 @@ function App() {
   // TODO: make responsive
 
   // TODO: fix show details modal img styling
-  // TODO: handle search if result is null
   // TODO: datepickers for date
   // TODO: separate components
   // TODO: change quotes cards styling
@@ -94,7 +93,6 @@ function App() {
         ) : (
           <div>
             <Routes>
-              <Route path="/" element={<Home />} />
               <Route
                 path="/dashboard"
                 element={
@@ -137,6 +135,8 @@ function App() {
                 path="/vehicles"
                 element={<Navigate to="/dashboard" replace />}
               />
+
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="*" element={<Navigate to="/notfound" replace />} />
             </Routes>
           </div>
