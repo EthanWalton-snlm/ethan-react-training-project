@@ -12,11 +12,14 @@ import { useState, useEffect } from "react";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import Input from "@mui/joy/Input";
+import SearchIcon from "@mui/icons-material/Search";
 
 function Dashboard({ vehicleData, updateData }) {
   const location = useLocation();
   const status = location.state?.status;
   const [alert, setAlert] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     ["created", "updated", "deleted"].includes(status)
@@ -32,6 +35,11 @@ function Dashboard({ vehicleData, updateData }) {
     ) : (
       <CheckCircleIcon />
     );
+  };
+
+  const searchVehicles = (event) => {
+    event.preventDefault();
+    updateData(searchTerm);
   };
 
   return (
@@ -62,7 +70,7 @@ function Dashboard({ vehicleData, updateData }) {
       )}
       <div className="dashboard-container">
         <div>
-          <div class="heading-container">
+          <div className="heading-container">
             <Typography
               level="h1"
               variant="plain"
@@ -79,6 +87,15 @@ function Dashboard({ vehicleData, updateData }) {
               <RefreshIcon />
             </IconButton>
           </div>
+          <form onSubmit={searchVehicles} className="search-form-container">
+            <Input
+              onChange={(event) => setSearchTerm(event.target.value)}
+              label="Search"
+              variant="outlined"
+              fullWidth
+              startDecorator={<SearchIcon />}
+            />
+          </form>
           <Divider orientation="horizontal" />
         </div>
         <Vehicles vehicleData={vehicleData} updateData={updateData} />

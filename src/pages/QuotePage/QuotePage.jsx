@@ -30,7 +30,7 @@ function QuotePage({ vehicleData }) {
 
       {currentVehicle ? (
         <div className="quote-display">
-          <QuoteDisplay vehicle={currentVehicle} />
+          <QuoteDisplay premium={currentVehicle.insuredValue / 150} />
         </div>
       ) : (
         <></>

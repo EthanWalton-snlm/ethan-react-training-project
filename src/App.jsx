@@ -13,9 +13,11 @@ import { PageNotFound } from "./pages/PageNotFound/PageNotFound";
 import { QuotePage } from "./pages/QuotePage/QuotePage";
 
 function App() {
-  // TODO: quotes page (drop down of all vehicles then view quotes in carasel, and new vehicle will redirect to this as next step?)
+  // TODO: fix quotes design and for edit submission
+  // TODO: formik
+  // TODO: add way to change plan (might be better to put it in /quotes rather than edit)
   // TODO: make responsive
-  // TODO: read mock api docs for filter/sort and for registration searching https://6402db84f61d96ac487212a6.mockapi.io/movies?search=of
+  // TODO: handle search if result is null
   // TODO: datepickers for date
   // TODO: separate components
   // TODO: dark mode
@@ -23,10 +25,15 @@ function App() {
   const [vehicleData, setVehicleData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  async function getVehiclesData() {
+  async function getVehiclesData(searchTerm = "") {
     setIsLoading(true);
-    const API = "https://68871b80071f195ca97f4670.mockapi.io/vehicles";
-    const response = await fetch(API, {
+    const url = new URL("https://68871b80071f195ca97f4670.mockapi.io/vehicles");
+
+    if (searchTerm) {
+      url.searchParams.append("search", searchTerm);
+    }
+
+    const response = await fetch(url, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });

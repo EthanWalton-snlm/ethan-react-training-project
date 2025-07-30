@@ -20,7 +20,6 @@ function QuoteCard({ color, price, name, content }) {
           <Typography>{content}</Typography>
         </CardContent>
       </Card>
-      ;
     </>
   );
 }
