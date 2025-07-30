@@ -12,6 +12,7 @@ import "./styles.css";
 
 function QuotePage({ vehicleData, updateData }) {
   const [currentVehicle, setCurrentVehicle] = useState();
+  const [planType, setPlanType] = useState(vehicleData.planType);
 
   const navigate = useNavigate();
 
@@ -33,6 +34,8 @@ function QuotePage({ vehicleData, updateData }) {
 
     handleChange("planType", plan.name);
     handleChange("premium", adjustedPremium);
+
+    setPlanType(plan);
   };
 
   const handleSubmit = async () => {
@@ -72,7 +75,7 @@ function QuotePage({ vehicleData, updateData }) {
           <div className="quote-display">
             <NewVehiclePlan
               basePremium={basePremium}
-              selectedPlan={currentVehicle.planType}
+              selectedPlan={planType}
               handlePlanChange={handlePlanChange}
             />
           </div>

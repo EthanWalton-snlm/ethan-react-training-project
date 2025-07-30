@@ -13,13 +13,19 @@ import { PageNotFound } from "./pages/PageNotFound/PageNotFound";
 import { QuotePage } from "./pages/QuotePage/QuotePage";
 
 function App() {
-  // TODO: change quotes design
+  // TODO: view summary after new vehicle, edit vehicle, change quote (can reuse whats inside details modal on dash)
+  // TODO: filter on dashboard
+
   // TODO: formik
   // TODO: make responsive
   // TODO: handle search if result is null
   // TODO: datepickers for date
   // TODO: separate components
+
+  // Extra:
   // TODO: dark mode
+  // TODO: change quotes design
+  // TODO: stats graph
 
   const [vehicleData, setVehicleData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
