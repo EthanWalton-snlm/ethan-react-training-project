@@ -16,8 +16,6 @@ import { CssVarsProvider, extendTheme } from "@mui/joy/styles";
 const theme = extendTheme();
 
 function App() {
-  // TODO: fix show details modal img styling
-
   const [vehicleData, setVehicleData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 

@@ -1,12 +1,33 @@
-# React + Vite
+# SDDA ReactJS Project - Ethan
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Setup
 
-Currently, two official plugins are available:
+1. Clone the repository\
+   `git clone https://github.com/EthanWalton-snlm/ethan-react-training-project.git`
+2. Navigate to the project directory\
+   `cd ethan-react-training-project`
+3. Install dependencies\
+   `npm i`
+4. Run the application\
+   `npm run dev`
+5. The application will be available on `http://localhost:5173`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## API
 
-## Expanding the ESLint configuration
+This app uses a single mockapi.io endpoint `https://68871b80071f195ca97f4670.mockapi.io/vehicles`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Pages and Features
+
+`/dashboard` - The default directory to view, search, and filter all insurance plans
+
+`/vehicles/new` - Create a new insurance plan
+
+`/vehicles/:id/edit` - Edit an existing insurance plan, where `:id` is the registration number of the vehicle.
+
+`/quotes` - View and apply quotes for a vehicle
+
+`/confirm/:registrationNumber` - View a confirmation page for an insurance plan
+
+`/analytics` - View data regarding the colours and makes of vehicles
+
+`/notfound` - Page not found
