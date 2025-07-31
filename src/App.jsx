@@ -1,6 +1,6 @@
 import "./App.css";
-import { Home } from "./pages/Home/Home";
 import { Header } from "./components/Header/Header";
+import { ModeSwitcher } from "./components/ModeSwitcher/ModeSwitcher";
 import { Routes, Route, Navigate } from "react-router";
 import { useState, useEffect } from "react";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
@@ -11,31 +11,12 @@ import { ConfirmationPage } from "./pages/ConfirmationPage/ConfirmationPage";
 import { PageNotFound } from "./pages/PageNotFound/PageNotFound";
 import { QuotePage } from "./pages/QuotePage/QuotePage";
 import { AnalyticsPage } from "./pages/AnalyticsPage/AnalyticsPage";
-import { CssVarsProvider, useColorScheme, extendTheme } from "@mui/joy/styles";
-import Switch from "@mui/joy/Switch";
+import { CssVarsProvider, extendTheme } from "@mui/joy/styles";
 
 const theme = extendTheme();
 
-function ModeSwitcher() {
-  const { mode, setMode } = useColorScheme();
-  const [checked, setChecked] = useState(mode === "dark");
-
-  useEffect(() => {
-    setChecked(mode === "dark");
-  }, [mode]);
-
-  const changeMode = (event) => {
-    const isChecked = event.target.checked;
-    setChecked(isChecked);
-    setMode(isChecked ? "dark" : "light");
-  };
-
-  return <Switch checked={checked} onChange={changeMode} />;
-}
-
 function App() {
   // TODO: fix show details modal img styling
-  // Dark mode icon/label
 
   const [vehicleData, setVehicleData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -68,10 +49,6 @@ function App() {
 
   useEffect(() => {
     getVehiclesData();
-
-    /* return () => {
-       console.log("Unmounted")
-    } */
   }, [setVehicleData]);
 
   return (

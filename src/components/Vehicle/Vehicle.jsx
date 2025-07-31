@@ -19,6 +19,7 @@ function Vehicle({ vehicle, updateData }) {
   const [detailsModal, setDetailsModal] = useState(false);
   const navigate = useNavigate();
   const hiddenKeys = ["imageLink", "id"];
+  const vehicleName = `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
 
   const editVehicleRedirect = (id) => {
     navigate(`/vehicles/${id}/edit`);
@@ -54,7 +55,18 @@ function Vehicle({ vehicle, updateData }) {
             </div>
             <div className="vehicle-info-container">
               <div className="vehicle-specs">
-                <h3 className="vehicle-title">{`${vehicle.year} ${vehicle.make} ${vehicle.model}`}</h3>
+                <h3
+                  className="vehicle-title"
+                  aria-hidden={
+                    vehicleName.length > 15
+                      ? vehicleName.slice(0, 15) + "..."
+                      : vehicleName
+                  }
+                >
+                  {vehicleName.length > 15
+                    ? vehicleName.slice(0, 15) + "..."
+                    : vehicleName}
+                </h3>
                 <h4 className="vehicle-subheading">{`${vehicle.registrationNumber}`}</h4>
               </div>
               <div className="plan-price">
@@ -120,7 +132,7 @@ function Vehicle({ vehicle, updateData }) {
           <ModalClose />
 
           <Typography level="h2" variant="plain">
-            {`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+            {vehicleName}
           </Typography>
           <Divider orientation="horizontal" />
           <div className="car-image-container-details">
