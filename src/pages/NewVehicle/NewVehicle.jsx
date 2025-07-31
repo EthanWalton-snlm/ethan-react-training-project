@@ -19,29 +19,35 @@ import "./styles.css";
 
 const addVehicleSchema = object({
   imageLink: string()
-    .required()
+    .required("Required")
     .min(4, "A valid link must be over 10 characters")
     .matches(/^https?:\/\//, "URL must start with http:// or https://"),
-  make: string().required().min(1, "Please select a valid vehicle make"),
-  model: string().required().min(1, "Please select a valid vehicle model"),
+  make: string()
+    .required("Required")
+    .min(1, "Please select a valid vehicle make"),
+  model: string()
+    .required("Required")
+    .min(1, "Please select a valid vehicle model"),
   year: number()
-    .required()
+    .required("Required")
     .moreThan(1940, "Your vehicle is too old to be insured")
     .typeError("Year must be numerical"),
-  color: string().required(),
-  registrationNumber: string().required(),
+  color: string().required("Required"),
+  registrationNumber: string()
+    .required("Required")
+    .max(10, "Please enter a valid registration number"),
   mileage: number()
-    .required()
+    .required("Required")
     .moreThan(0, "Please enter a valid mileage")
     .typeError("Mileage must be numerical"),
-  ownerFullName: string().required(),
+  ownerFullName: string().required("Required"),
   ownerIdNumber: string()
-    .required()
+    .required("Required")
     .min(13, "Please enter a valid South African ID number")
     .max(13, "Please enter a valid South African ID number"),
-  planType: string().required().min(1),
-  premium: number().required(),
-  insuredValue: number().required(),
+  planType: string().required("Required").min(1),
+  premium: number().required("Required"),
+  insuredValue: number().required("Required"),
 });
 
 function NewVehicle({

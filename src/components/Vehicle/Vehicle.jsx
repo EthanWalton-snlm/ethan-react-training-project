@@ -13,6 +13,7 @@ import Table from "@mui/joy/Table";
 import Sheet from "@mui/joy/Sheet";
 import { sentenceCase } from "../../utils/sentenceCase";
 import Typography from "@mui/joy/Typography";
+import Chip from "@mui/joy/Chip";
 
 function Vehicle({ vehicle, updateData }) {
   const [deleteModal, setDeleteModal] = useState(false);
@@ -50,27 +51,27 @@ function Vehicle({ vehicle, updateData }) {
       >
         <div className="inner-card">
           <div className="clickable-card" onClick={() => setDetailsModal(true)}>
-            <div className="car-image-container">
-              <img className="car-image" src={vehicle.imageLink} />
-            </div>
+            <img className="car-image" src={vehicle.imageLink} />
             <div className="vehicle-info-container">
               <div className="vehicle-specs">
                 <h3
                   className="vehicle-title"
                   aria-hidden={
-                    vehicleName.length > 15
-                      ? vehicleName.slice(0, 15) + "..."
+                    vehicleName.length > 20
+                      ? vehicleName.slice(0, 20) + "..."
                       : vehicleName
                   }
                 >
-                  {vehicleName.length > 15
-                    ? vehicleName.slice(0, 15) + "..."
+                  {vehicleName.length > 20
+                    ? vehicleName.slice(0, 20) + "..."
                     : vehicleName}
                 </h3>
-                <h4 className="vehicle-subheading">{`${vehicle.registrationNumber}`}</h4>
+                <p className="plan-price-text">{`R${vehicle.premium} p/m`}</p>
               </div>
               <div className="plan-price">
-                <p className="plan-price-text">{`R${vehicle.premium} p/m`}</p>
+                <Chip color="warning" size="md" variant="outlined">
+                  {vehicle.registrationNumber}
+                </Chip>
               </div>
             </div>
           </div>
@@ -101,12 +102,11 @@ function Vehicle({ vehicle, updateData }) {
       <Modal open={deleteModal} onClose={() => setDeleteModal(false)}>
         <ModalDialog>
           <ModalClose />
-          <h1>
+          <Typography level="h3">
             Delete{" "}
             {`${vehicle.year} ${vehicle.make} ${vehicle.model} with registration ${vehicle.registrationNumber}`}
             ?
-          </h1>
-          {/* <Typography>Modal title</Typography> */}
+          </Typography>
 
           <Button
             color="neutral"
@@ -135,9 +135,7 @@ function Vehicle({ vehicle, updateData }) {
             {vehicleName}
           </Typography>
           <Divider orientation="horizontal" />
-          <div className="car-image-container-details">
-            <img src={vehicle.imageLink} />
-          </div>
+          <img src={vehicle.imageLink} className="car-image-show-details" />
 
           <Sheet sx="overflow: auto; height: 15rem;">
             <Table variant="soft" className="modal-table">

@@ -14,9 +14,7 @@ function QuoteCard({ price, name, content }) {
               <Typography level="h4">{name} Plan</Typography>
 
               <Divider orientation="horizontal" sx={{ margin: "0.5rem 0" }} />
-              <ul>
-                <Typography>{content}</Typography>
-              </ul>
+              {content}
               <Divider orientation="horizontal" sx={{ margin: "0.5rem 0" }} />
             </div>
             <div className="price">
