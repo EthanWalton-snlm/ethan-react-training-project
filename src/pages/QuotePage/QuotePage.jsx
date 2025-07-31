@@ -12,7 +12,7 @@ import "./styles.css";
 
 function QuotePage({ vehicleData, updateData }) {
   const [currentVehicle, setCurrentVehicle] = useState();
-  const [planType, setPlanType] = useState(vehicleData.planType);
+  const [planType, setPlanType] = useState(vehicleData.planType ?? null);
 
   const navigate = useNavigate();
 
@@ -64,6 +64,7 @@ function QuotePage({ vehicleData, updateData }) {
         color="primary"
         size="md"
         variant="outlined"
+        isOptionEqualToValue={(option, value) => option.id === value.id}
       />
 
       {currentVehicle ? (

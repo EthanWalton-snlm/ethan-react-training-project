@@ -153,7 +153,7 @@ function Dashboard({ vehicleData, updateData }) {
           <Autocomplete
             placeholder="Select a make"
             options={VEHICLE_INFO.map((car) => car.brand)}
-            value={filterMake}
+            value={filterMake || null}
             onChange={(_, value) => setFilterMake(value)}
             color="primary"
           />
@@ -165,7 +165,7 @@ function Dashboard({ vehicleData, updateData }) {
                 VEHICLE_INFO.find((car) => car.brand === filterMake)?.models ||
                 []
               }
-              value={filterModel}
+              value={filterModel || null}
               onChange={(_, value) => setFilterModel(value)}
               color="primary"
             />
@@ -176,7 +176,7 @@ function Dashboard({ vehicleData, updateData }) {
           <Autocomplete
             placeholder="Select a plan type"
             options={["Bronze", "Silver", "Diamond"]}
-            value={filterPlanType}
+            value={filterPlanType || null}
             onChange={(_, value) => setFilterPlanType(value)}
             color="primary"
           />
@@ -195,7 +195,7 @@ function Dashboard({ vehicleData, updateData }) {
               "Silver",
               "Pink",
             ]}
-            value={filterColor}
+            value={filterColor || null}
             onChange={(_, value) => setFilterColor(value)}
             color="primary"
           />

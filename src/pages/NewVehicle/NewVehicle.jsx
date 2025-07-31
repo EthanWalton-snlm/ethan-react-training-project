@@ -14,6 +14,7 @@ import {
 import { useFormik } from "formik";
 import { object, string, number } from "yup";
 import Autocomplete from "@mui/joy/Autocomplete";
+import Typography from "@mui/joy/Typography";
 import "./styles.css";
 
 const addVehicleSchema = object({
@@ -227,36 +228,62 @@ function NewVehicle({
             error={touched.mileage && errors.mileage}
             helperText={touched.mileage ? errors.mileage : ""}
           />
-
-          <Autocomplete
-            placeholder="Select a make"
-            options={VEHICLE_INFO.map((car) => car.brand)}
-            disableClearable
-            value={values.make}
-            onChange={(_, value) => {
-              setFieldValue("make", value);
-              setVehicleMake(value);
-              setInsuranceValues(value);
-            }}
-            onBlur={() => formik.setFieldTouched("make", true)}
-            color="primary"
-          />
-
-          {vehicleMake ? (
+          <div>
+            <Typography
+              level="p"
+              color={touched.mileage && errors.mileage ? "danger" : "neutral"}
+              sx={{ margin: "0 0 0 0.1rem" }}
+            >
+              {touched.make && errors.make
+                ? touched.mileage
+                  ? errors.mileage
+                  : ""
+                : "Make"}
+            </Typography>
             <Autocomplete
-              placeholder="Select a model"
-              options={
-                VEHICLE_INFO.find((car) => car.brand === values.make)?.models ||
-                []
-              }
+              placeholder="Select a make"
+              options={VEHICLE_INFO.map((car) => car.brand)}
               disableClearable
-              value={values.model}
+              value={values.make || null}
               onChange={(_, value) => {
-                setFieldValue("model", value);
+                setFieldValue("make", value);
+                setFieldValue("model", "");
+                setVehicleMake(value);
+                setInsuranceValues(value);
               }}
-              onBlur={() => formik.setFieldTouched("model", true)}
+              onBlur={() => formik.setFieldTouched("make", true)}
               color="primary"
             />
+          </div>
+
+          {vehicleMake ? (
+            <div>
+              <Typography
+                level="p"
+                color={touched.model && errors.model ? "danger" : "neutral"}
+                sx={{ margin: "0 0 0 0.1rem" }}
+              >
+                {touched.make && errors.make
+                  ? touched.model
+                    ? errors.model
+                    : ""
+                  : "Model"}
+              </Typography>
+              <Autocomplete
+                placeholder="Select a model"
+                options={
+                  VEHICLE_INFO.find((car) => car.brand === values.make)
+                    ?.models || []
+                }
+                disableClearable
+                value={values.model || null}
+                onChange={(_, value) => {
+                  setFieldValue("model", value);
+                }}
+                onBlur={() => formik.setFieldTouched("model", true)}
+                color="primary"
+              />
+            </div>
           ) : (
             <></>
           )}

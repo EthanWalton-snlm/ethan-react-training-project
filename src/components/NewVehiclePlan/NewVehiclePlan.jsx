@@ -56,6 +56,7 @@ function NewVehiclePlan({
           color="primary"
           error={formik.touched.planType && !!formik.errors.planType}
           helperText={formik.touched.planType ? formik.errors.planType : ""}
+          sx={{ margin: "1rem 0" }}
         />
       )}
     </>

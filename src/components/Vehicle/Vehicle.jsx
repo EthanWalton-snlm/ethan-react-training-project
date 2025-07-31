@@ -130,18 +130,16 @@ function Vehicle({ vehicle, updateData }) {
           <Sheet sx="overflow: auto; height: 15rem;">
             <Table variant="soft" className="modal-table">
               <tbody>
-                {Object.keys(vehicle).map((key) =>
-                  !hiddenKeys.includes(key) ? (
+                {Object.keys(vehicle)
+                  .filter((key) => !hiddenKeys.includes(key))
+                  .map((key) => (
                     <tr key={key}>
                       <td>
                         <span className="table-key">{sentenceCase(key)}</span>
                       </td>
                       <td>{vehicle[key]}</td>
                     </tr>
-                  ) : (
-                    <></>
-                  )
-                )}
+                  ))}
               </tbody>
             </Table>
           </Sheet>

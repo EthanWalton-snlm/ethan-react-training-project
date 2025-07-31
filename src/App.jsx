@@ -34,13 +34,8 @@ function ModeSwitcher() {
 }
 
 function App() {
-  // TODO: make responsive
-  // TODO: fix console errors
-
   // TODO: fix show details modal img styling
   // Dark mode icon/label
-
-  // TODO: separate components (aka refactor where possible)
 
   const [vehicleData, setVehicleData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
