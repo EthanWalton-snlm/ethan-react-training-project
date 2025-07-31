@@ -36,6 +36,7 @@ function ModeSwitcher() {
 
 function App() {
   // TODO: make responsive
+  // TODO: fix edit confirmation redirect
 
   // TODO: change quotes cards styling
   // TODO: fix show details modal img styling
