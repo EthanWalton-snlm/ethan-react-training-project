@@ -65,30 +65,28 @@ const INITIAL_VEHICLES_DATA_FLAT = [
     status: "Active",
   },
 ];
+
+const today = new Date().toISOString().split("T")[0];
+
 const newVehicleTemplate = {
   imageLink: "",
   make: "",
   model: "",
-  year: 0,
+  year: "",
   color: "",
   registrationNumber: "",
-  mileage: 0,
-  fullName: "",
-  idNumber: "",
+  mileage: "",
+  FullName: "",
+  IdNumber: "",
   street: "",
   city: "",
   province: "",
   postalCode: "",
   country: "",
-  policyNumber: "INS-1",
   planType: "",
   premium: 0.0,
-  startDate: "2025-01-01",
-  endDate: "2025-12-31",
-  excess: 0.0,
+  startDate: today,
   insuredValue: 0.0,
-  paymentMethod: "",
-  status: "",
 };
 
 const PLAN_INFO = [
@@ -1201,4 +1199,4 @@ const VEHICLE_INFO = [
   },
 ];
 
-export { newVehicleTemplate, VEHICLE_INFO, PLAN_INFO };
+export { newVehicleTemplate, VEHICLE_INFO, PLAN_INFO, today };

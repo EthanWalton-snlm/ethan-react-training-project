@@ -4,7 +4,7 @@ import Button from "@mui/joy/Button";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { VehicleInput } from "../../components/VehicleInput/VehicleInput";
-import { VEHICLE_INFO, newVehicleTemplate } from "../../constants";
+import { VEHICLE_INFO, newVehicleTemplate, today } from "../../constants";
 import { NewVehicleSection } from "../../components/NewVehicleSection/NewVehicleSection";
 import { NewVehiclePlan } from "../../components/NewVehiclePlan/NewVehiclePlan";
 import {
@@ -55,9 +55,8 @@ function NewVehicle({
 
   const navigate = useNavigate();
 
-  const today = new Date().toISOString().split("T")[0];
-
   const {
+    id,
     imageLink,
     make,
     model,
@@ -80,6 +79,7 @@ function NewVehicle({
 
   const formik = useFormik({
     initialValues: {
+      id: id,
       imageLink: imageLink ?? "",
       make: make ?? "",
       model: model ?? "",
