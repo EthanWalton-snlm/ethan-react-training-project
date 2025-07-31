@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  width: fit-content;
   justify-content: flex-start;
 }
 
@@ -28,4 +27,15 @@
   margin: 1rem 0;
   display: flex;
   gap: 0.5rem;
+}
+
+@media (max-width: 931px) {
+  .dashboard-container {
+    margin: 2rem 2rem 4rem 4rem;
+    width: 90%;
+  }
+
+  .search-form-container {
+    margin-right: 5rem;
+  }
 }

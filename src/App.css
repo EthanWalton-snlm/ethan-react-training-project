@@ -25,3 +25,10 @@ body {
 [data-joy-color-scheme="dark"] .navigation {
   background-color: #0c1a27;
 }
+
+@media (max-width: 800px) {
+  .app-layout {
+    overflow-x: auto;
+    max-width: 100vw;
+  }
+}
