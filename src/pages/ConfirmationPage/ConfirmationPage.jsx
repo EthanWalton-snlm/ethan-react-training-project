@@ -28,9 +28,7 @@ function ConfirmationPage({ vehicleData }) {
       </Typography>
       <Divider orientation="horizontal" />
       <div className="info-container">
-        <div className="car-image-container-details">
-          <img src={vehicle.imageLink} />
-        </div>
+        <img src={vehicle.imageLink} className="car-image" />
 
         <div className="modal-table">
           <Table
