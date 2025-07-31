@@ -79,7 +79,7 @@ function QuotePage({ vehicleData, updateData }) {
             variant="soft"
             startDecorator={<FileUploadIcon />}
             onClick={handleSubmit}
-            className="submit-button"
+            sx={{ margin: "1rem 0" }}
           >
             Submit Changes
           </Button>

@@ -8,7 +8,6 @@ import { LoadingScreen } from "./pages/LoadingScreen/LoadingScreen";
 import { NewVehicle } from "./pages/NewVehicle/NewVehicle";
 import { EditVehicle } from "./pages/EditVehicle/EditVehicle";
 import { ConfirmationPage } from "./pages/ConfirmationPage/ConfirmationPage";
-import { VehicleQuotes } from "./pages/VehicleQuotes/VehicleQuotes";
 import { PageNotFound } from "./pages/PageNotFound/PageNotFound";
 import { QuotePage } from "./pages/QuotePage/QuotePage";
 import { AnalyticsPage } from "./pages/AnalyticsPage/AnalyticsPage";
@@ -36,9 +35,8 @@ function ModeSwitcher() {
 
 function App() {
   // TODO: make responsive
-  // TODO: fix edit confirmation redirect
+  // TODO: fix console errors
 
-  // TODO: change quotes cards styling
   // TODO: fix show details modal img styling
   // Dark mode icon/label
 
@@ -131,7 +129,6 @@ function App() {
                   />
                 }
               />
-              <Route path="/quotes/:vehicleId" element={<VehicleQuotes />} />
               <Route
                 path="/confirm/:registrationNumber"
                 element={<ConfirmationPage vehicleData={vehicleData} />}

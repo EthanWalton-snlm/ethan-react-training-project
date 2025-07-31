@@ -1,4 +1,13 @@
-.quote-card {
-  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
-  width: 15em;
+.quote-card-container {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+}
+
+.price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  height: 100%;
 }

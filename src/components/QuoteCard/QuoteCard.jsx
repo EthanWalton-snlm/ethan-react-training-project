@@ -4,20 +4,25 @@ import Typography from "@mui/joy/Typography";
 import Divider from "@mui/joy/Divider";
 import "./styles.css";
 
-function QuoteCard({ color, price, name, content }) {
+function QuoteCard({ price, name, content }) {
   return (
     <>
-      <Card
-        variant="solid"
-        color="neutral"
-        className="quote-card"
-        sx={`background-color: ${color}`}
-      >
+      <Card variant="soft" color="primary">
         <CardContent orientation="vertical">
-          <Typography>{price}</Typography>
-          <Typography>{name}</Typography>
-          <Divider orientation="horizontal" />
-          <Typography>{content}</Typography>
+          <div className="quote-card-container">
+            <div>
+              <Typography level="h4">{name} Plan</Typography>
+
+              <Divider orientation="horizontal" sx={{ margin: "0.5rem 0" }} />
+              <ul>
+                <Typography>{content}</Typography>
+              </ul>
+              <Divider orientation="horizontal" sx={{ margin: "0.5rem 0" }} />
+            </div>
+            <div className="price">
+              <Typography level="h3">{price}</Typography>
+            </div>
+          </div>
         </CardContent>
       </Card>
     </>
