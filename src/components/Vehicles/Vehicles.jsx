@@ -1,5 +1,5 @@
 import "./styles.css";
-import { Vehicle } from "../../components/Vehicle/Vehicle";
+import { Vehicle } from "../Vehicle/Vehicle";
 import Typography from "@mui/joy/Typography";
 
 function Vehicles({ vehicleData, updateData }) {

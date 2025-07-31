@@ -1,5 +1,5 @@
 import Button from "@mui/joy/Button";
-import { Vehicles } from "../../pages/Vehicles/Vehicles";
+import { Vehicles } from "../../components/Vehicles/Vehicles";
 import Typography from "@mui/joy/Typography";
 import Divider from "@mui/joy/Divider";
 import "./styles.css";
@@ -112,13 +112,6 @@ function Dashboard({ vehicleData, updateData }) {
           </div>
           <Divider orientation="horizontal" />
           <form onSubmit={searchVehicles} className="search-form-container">
-            <Input
-              onChange={(event) => setSearchTerm(event.target.value)}
-              label="Search"
-              variant="outlined"
-              fullWidth
-              startDecorator={<SearchIcon />}
-            />
             <IconButton
               variant="soft"
               size="sm"
@@ -135,6 +128,13 @@ function Dashboard({ vehicleData, updateData }) {
             >
               <RefreshIcon />
             </IconButton>
+            <Input
+              onChange={(event) => setSearchTerm(event.target.value)}
+              label="Search"
+              variant="outlined"
+              fullWidth
+              startDecorator={<SearchIcon />}
+            />
           </form>
           <Divider orientation="horizontal" />
         </div>
