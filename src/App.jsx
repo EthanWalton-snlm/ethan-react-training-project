@@ -11,6 +11,7 @@ import { ConfirmationPage } from "./pages/ConfirmationPage/ConfirmationPage";
 import { VehicleQuotes } from "./pages/VehicleQuotes/VehicleQuotes";
 import { PageNotFound } from "./pages/PageNotFound/PageNotFound";
 import { QuotePage } from "./pages/QuotePage/QuotePage";
+import { AnalyticsPage } from "./pages/AnalyticsPage/AnalyticsPage";
 import { CssVarsProvider, useColorScheme, extendTheme } from "@mui/joy/styles";
 import Switch from "@mui/joy/Switch";
 
@@ -38,8 +39,7 @@ function App() {
 
   // TODO: change quotes cards styling
   // TODO: fix show details modal img styling
-
-  // TODO (extra): stats graph
+  // Dark mode icon/label
 
   // TODO: separate components (aka refactor where possible)
 
@@ -89,6 +89,7 @@ function App() {
               { label: "Dashboard", link: "/dashboard" },
               { label: "New Vehicle", link: "/vehicles/new" },
               { label: "Quotes", link: "/quotes" },
+              { label: "Analytics", link: "/analytics" },
             ]}
             modeSwitcher={<ModeSwitcher />}
           />
@@ -134,6 +135,12 @@ function App() {
                 path="/confirm/:registrationNumber"
                 element={<ConfirmationPage vehicleData={vehicleData} />}
               />
+
+              <Route
+                path="/analytics"
+                element={<AnalyticsPage vehicleData={vehicleData} />}
+              />
+
               <Route path="/notfound" element={<PageNotFound />} />
 
               <Route

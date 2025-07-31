@@ -26,7 +26,11 @@ function Header({ options, modeSwitcher }) {
                   component={Link}
                   to={option.link}
                   className="header-button"
-                  color={mode === "dark" ? "#0c1a27" : "#096bde"}
+                  variant="soft"
+                  sx={{
+                    background: mode === "dark" ? "#0c1a27" : "#096bde",
+                    color: mode === "dark" ? "neutral-0" : "#0c1a27",
+                  }}
                 >
                   <div className="inner-button">
                     <div>{option.label}</div>

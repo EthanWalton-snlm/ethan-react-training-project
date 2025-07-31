@@ -1,0 +1,14 @@
+.analytics-container {
+  margin: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: fit-content;
+  justify-content: flex-start;
+}
+
+.charts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
